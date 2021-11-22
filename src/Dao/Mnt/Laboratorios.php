@@ -3,10 +3,22 @@
 namespace Dao\Mnt;
 
 use Dao\Table;
+use Views\Renderer;
 
 class Laboratorios extends Table
 {
-    public static function obtenerLaboratorios()
+    public static function obtenerLaboratorios($list, $numPerPage)
+    {
+        $startFrom = (intval($list)-1)*$numPerPage;
+        $sqlStr = "SELECT * FROM laboratorio LIMIT :startFrom,:numPerPage;";
+        $parametros = array(
+            "startFrom" => $startFrom,
+            "numPerPage" => $numPerPage
+        );
+        return self::obtenerRegistros($sqlStr, $parametros);
+    }
+
+    public static function obtenerNumLaboratorios()
     {
         $sqlStr = "SELECT * from laboratorio;";
         return self::obtenerRegistros($sqlStr, array());

@@ -29,6 +29,13 @@ class Nav
             );
         }
 
+        if (\Utilities\Security::isAuthorized($userID, "WW_Laboratorios")) {
+            $tmpNAVIGATION[] = array(
+                "nav_url" => "index.php?page=mnt_laboratorios",
+                "nav_label" => "Laboratorios"
+            );
+        }
+
         \Utilities\Context::setContext("NAVIGATION", $tmpNAVIGATION);
     }
 

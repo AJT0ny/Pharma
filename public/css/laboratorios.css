@@ -1,0 +1,19 @@
+.image{
+    width: auto;
+    height: 70px;
+}
+
+.pages{
+    margin: 3em 0em;
+    text-align: center;
+}
+
+.page{
+    background-color: rgb(42, 135, 241);
+    padding: 0.3em;
+    margin: 0em 0.3em;
+    text-decoration: none;
+    color: #eee;
+    border: 1px solid rgb(38, 117, 207);
+    border-radius: 3px;
+}
