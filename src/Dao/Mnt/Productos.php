@@ -37,16 +37,16 @@ class Productos extends Table
 
     public static function editarproducto($productoNombre, $productoDescripcion, $productoCodigo, $productoPrecio, $productoFechaCreado, $productoFechaPublicado, $productoFechaEditado, $productoActivo, $presentacionId, $laboratorioId, $productoImagen, $productoId)
     {
-        $sqlstr = "UPDATE producto set productoNombre=:productoNombre, productoDescripcion=:productoDescripcion, productoCodigo=:productoCodigo, productoPrecio=:productoPrecio, productoFechaCreado:productoFechaCreado, productoFechaPublicado=:productoFechaPublicado, productoFechaEditado=:productoFechaEditado, productoActivo=:productoActivo, presentacionId=:presentacionId, laboratorioId=:laboratorioId, productoImagen=:productoImagen where productoId = :productoId;";
+        $sqlstr = "UPDATE producto set productoNombre=:productoNombre, productoDescripcion=:productoDescripcion, productoCodigo=:productoCodigo, productoPrecio=:productoPrecio, productoFechaCreado=:productoFechaCreado, productoFechaPublicado=:productoFechaPublicado, productoFechaEditado=:productoFechaEditado, productoActivo=:productoActivo, presentacionId=:presentacionId, laboratorioId=:laboratorioId, productoImagen=:productoImagen where productoId = :productoId;";
         $parametros = array(
             "productoNombre" => $productoNombre,
             "productoDescripcion" => $productoDescripcion,
             "productoCodigo" =>  $productoCodigo,
-            "productoPrecio" =>  $productoPrecio,
+            "productoPrecio" =>  floatval($productoPrecio),
             "productoFechaCreado" =>  $productoFechaCreado,
             "productoFechaPublicado" =>  $productoFechaPublicado,
             "productoFechaEditado" =>  $productoFechaEditado,
-            "productoActivo" =>  $productoActivo,
+            "productoActivo" =>  intval($productoActivo),
             "presentacionId" =>  $presentacionId,
             "laboratorioId" =>  $laboratorioId,
             "productoImagen" =>  $productoImagen,

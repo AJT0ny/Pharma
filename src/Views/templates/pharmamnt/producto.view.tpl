@@ -1,21 +1,25 @@
 <h1>{{mode_dsc}}</h1>
 <section>
-  <form action="index.php?page=mnt_producto&mode={{mode}}&productoId={{productoId}}"
+  <form action="index.php?page=pharmamnt_producto&mode={{mode}}&productoId={{productoId}}"
     method="POST" >
     <section>
-    <label for="productoId">Código de laboratorio</label>
+    <label for="productoId">Código del Producto</label>
     <input type="hidden" id="productoId" name="productoId" value="{{productoId}}"/>
     <input type="hidden" id="mode" name="mode" value="{{mode}}" />
     <input type="hidden" id="xsrftoken" name="xsrftoken" value="{{xsrftoken}}" />
     <input type="text" readonly name="productoIddummy" value="{{productoId}}"/>
     </section>
     <section>
-      <label for="productoNombre">laboratorio</label>
+      <label for="productoNombre">Producto</label>
       <input type="text" {{readonly}} name="productoNombre" value="{{productoNombre}}" maxlength="45" placeholder="Nombre de laboratorio"/>
     </section>
     <section>
       <label for="productoDescripcion">descripcion</label>
-      <input type="text" {{readonly}} name="productoDescripcion" value="{{productoDescripcion}}" maxlength="45" placeholder="descripcion de laboratorio"/>
+      <input type="text" {{readonly}} name="productoDescripcion" value="{{productoDescripcion}}" maxlength="250" placeholder="descripcion de laboratorio"/>
+    </section>
+    <section>
+      <label for="productoCodigo">Codigo</label>
+      <input type="text" {{readonly}} name="productoCodigo" value="{{productoCodigo}}" maxlength="250" placeholder="Codigo del Producto"/>
     </section>
     <section>
       <label for="productoPrecio">Precio</label>
@@ -34,8 +38,14 @@
       <input type="date" {{readonly}} name="productoFechaEditado" value="{{productoFechaEditado}}" placeholder="Fecha de actualizacion"/>
     </section>
     <section>
-      <label for="productoActivo">Activo</label>
-      <input type="number" {{readonly}} name="productoActivo" value="{{productoActivo}}" placeholder="Estado del Producto"/>
+      <label for="productoActivo">Estado</label>
+      {{if readonly}}
+       <input type="hidden" id="productoActivodummy" name="productoActivo" value="" />
+      {{endif readonly}}
+      <select id="productoActivo" name="productoActivo" {{if readonly}}disabled{{endif readonly}}>
+        <option value="1" {{productoActivo_ACT}}>Activo</option>
+        <option value="0" {{productoActivo_INA}}>Inactivo</option>
+      </select>
     </section>
     <section>
       <label for="presentacionId">Presentacion</label>
@@ -73,7 +83,7 @@
       document.getElementById("btnCancelar").addEventListener("click", function(e){
         e.preventDefault();
         e.stopPropagation();
-        window.location.assign("index.php?page=mnt_productos");
+        window.location.assign("index.php?page=pharmamnt_productos");
       });
   });
 </script>

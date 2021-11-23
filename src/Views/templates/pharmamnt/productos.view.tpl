@@ -30,7 +30,7 @@
       {{foreach items}}
       <tr>
         <td>{{productoId}}</td>
-        <td><a href="index.php?page=mnt_producto&mode=DSP&productoId={{productoId}}">{{productoNombre}}</a></td>
+        <td><a href="index.php?page=pharmamnt_producto&mode=DSP&productoId={{productoId}}">{{productoNombre}}</a></td>
         <td>{{productoDescripcion}}</td>
         <td>{{productoCodigo}}</td>
         <td>{{productoPrecio}}</td>
@@ -44,7 +44,7 @@
         <td>
           {{if ~edit_enabled}}
           <form action="index.php" method="get">
-             <input type="hidden" name="page" value="mnt_producto"/>
+             <input type="hidden" name="page" value="pharmamnt_producto"/>
               <input type="hidden" name="mode" value="UPD" />
               <input type="hidden" name="productoId" value={{productoId}} />
               <button type="submit">Editar</button>
@@ -52,7 +52,7 @@
           {{endif ~edit_enabled}}
           {{if ~delete_enabled}}
           <form action="index.php" method="get">
-             <input type="hidden" name="page" value="mnt_producto"/>
+             <input type="hidden" name="page" value="pharmamnt_producto"/>
               <input type="hidden" name="mode" value="DEL" />
               <input type="hidden" name="productoId" value={{productoId}} />
               <button type="submit">Eliminar</button>
@@ -69,7 +69,7 @@
       document.getElementById("btnAdd").addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        window.location.assign("index.php?page=mnt_producto&mode=INS&productoId=0");
+        window.location.assign("index.php?page=pharmamnt_producto&mode=INS&productoId=0");
       });
     });
 </script>
