@@ -1,20 +1,20 @@
-<h1>{{mode_dsc}}</h1>
-<section>
-  <form action="index.php?page=mnt_laboratorio&mode={{mode}}&laboratorioId={{laboratorioId}}"
+<section class="form">
+    <h1>{{mode_dsc}}</h1>
+  <form action="index.php?page=mnt_presentacion&mode={{mode}}&presentacionId={{presentacionId}}"
     method="POST" >
-    <section>
-    <label for="laboratorioId">Código</label>
+    <section class="data">
+    <label for="presentacionId">Código</label>
     <input type="hidden" id="mode" name="mode" value="{{mode}}" />
     <input type="hidden" id="xsrftoken" name="xsrftoken" value="{{xsrftoken}}" />
-    <input type="text" readonly name="laboratorioId" value="{{laboratorioId}}"/>
+    <input type="text" readonly name="presentacionId" value="{{presentacionId}}"/>
     </section>
-    <section>
-      <label for="laboratorioNombre">Nombre</label>
-      <input type="text" {{readonly}} name="laboratorioNombre" value="{{laboratorioNombre}}" maxlength="50" placeholder="Nombre del Laboratorio."/>
+    <section class="data">
+      <label for="presentacionNombre">Nombre</label>
+      <input type="text" {{readonly}} name="presentacionNombre" value="{{presentacionNombre}}" maxlength="50" placeholder="Nombre de la presentacion."/>
     </section>
-    <section>
-      <label for="laboratorioDescripcion">Descripcion</label>
-      <input type="text" {{readonly}} name="laboratorioDescripcion" value="{{laboratorioDescripcion}}" placeholder="Descripcion del laboratorio."/>
+    <section class="data">
+      <label class="descripcion" for="presentacionDescripcion">Descripcion</label>
+      <textarea name="presentacionDescripcion" type="text" rows="9" >{{presentacionDescripcion}}</textarea>
     </section>
     {{if hasErrors}}
         <section>
@@ -40,7 +40,7 @@
       document.getElementById("btnCancelar").addEventListener("click", function(e){
         e.preventDefault();
         e.stopPropagation();
-        window.location.assign("index.php?page=mnt_laboratorios");
+        window.location.assign("index.php?page=mnt_presentaciones");
       });
   });
 </script>

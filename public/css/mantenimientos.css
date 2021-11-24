@@ -50,6 +50,28 @@
     margin: 3em 0em;
 }
 
+.descripcion{
+    position: absolute;
+
+}
+
+.form{
+    padding: 2em;
+    margin: 5% auto 0 auto;
+    max-width: 500px;
+    border: 2px solid #00ADB5;
+    border-radius: 10px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.data{
+    margin: 1em 2em;
+}
+
+textarea{
+    margin-left: 6em;
+}
+
 td{
     text-align: center;
     width: 100px;
