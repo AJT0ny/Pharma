@@ -25,33 +25,72 @@ class Laboratorios extends PrivateController
             $list=1;
             $viewData["list"] = 1;
         }
-
-        $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNumLaboratorios();
-
-        foreach ($viewData["lista"] as $producto) {
-            $viewData["totalLabs"] = $viewData["totalLabs"] + 1; 
-        }
-    
-        $viewData["totalList"] = ceil($viewData["totalLabs"]/$numPerPage);
-    
-        for ($i=1; $i <= $viewData["totalList"]; $i++) {
-            $viewData["nList"]["number"] = $i;
-            $viewData["nPages"][] = $viewData["nList"];
-        }
-
-
-
-        $viewData["laboratorio"] = \Dao\Mnt\Laboratorios::obtenerLaboratorios($list, $numPerPage);
-
-        if($list<$viewData["totalList"]){
-            $viewData["next"] = true;
-            $viewData["nextBtn"] = $list+1;
-        }
         
-        if ($list>1) {
-            $viewData["previous"] = true;
-            $viewData["prevBtn"] = $list - 1;
+
+        if(isset($_GET["search"])){
+            $search = $_GET["search"];
+            $viewData["search"] = true;
+            $viewData["searchValue"] = $search;
+            $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNLaboratoriosB($search);
+
+            foreach ($viewData["lista"] as $producto) {
+                $viewData["totalLabs"] = $viewData["totalLabs"] + 1; 
+            }
+
+            if($viewData["totalLabs"] == 0 ){
+                $viewData["noData"] = true;
+            }
+    
+            $viewData["totalList"] = ceil($viewData["totalLabs"]/$numPerPage);
+    
+            for ($i=1; $i <= $viewData["totalList"]; $i++) {
+                $viewData["nList"]["number"] = $i;
+                $viewData["nPages"][] = $viewData["nList"];
+                $viewData["searchValue"] = $search;
+            }
+
+            if($list<$viewData["totalList"]){
+                $viewData["next"] = true;
+                $viewData["nextBtn"] = $list+1;
+            }
+            
+            if ($list>1) {
+                $viewData["previous"] = true;
+                $viewData["prevBtn"] = $list - 1;
+            }
+
+        }else{
+            $search = "";
+            $viewData["search"] = false;
+            $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNumLaboratorios();
+
+            foreach ($viewData["lista"] as $producto) {
+                $viewData["totalLabs"] = $viewData["totalLabs"] + 1; 
+            }
+
+            if($viewData["totalLabs"] == 0 ){
+                $viewData["noData"] = true;
+            }
+        
+            $viewData["totalList"] = ceil($viewData["totalLabs"]/$numPerPage);
+        
+            for ($i=1; $i <= $viewData["totalList"]; $i++) {
+                $viewData["nList"]["number"] = $i;
+                $viewData["nPages"][] = $viewData["nList"];
+            }
+
+            if($list<$viewData["totalList"]){
+                $viewData["next"] = true;
+                $viewData["nextBtn"] = $list+1;
+            }
+            
+            if ($list>1) {
+                $viewData["previous"] = true;
+                $viewData["prevBtn"] = $list - 1;
+            }
         }
+
+        $viewData["laboratorio"] = \Dao\Mnt\Laboratorios::obtenerLaboratorios($list, $search, $numPerPage);
 
         \Views\Renderer::render("mnt/Laboratorios", $viewData);
     }

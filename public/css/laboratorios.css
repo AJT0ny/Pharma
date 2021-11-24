@@ -1,6 +1,11 @@
-.image{
-    width: auto;
-    height: 70px;
+.page-title{
+    margin: 1em 0em;
+}
+
+.grid-2{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2em 0em 0em 0em;
 }
 
 .pages{
@@ -16,4 +21,42 @@
     color: #eee;
     border: 1px solid rgb(38, 117, 207);
     border-radius: 3px;
+}
+
+.desc-sect{
+    flex: 1 1 75%;
+    padding-top: 1em;
+}
+
+.search{
+    flex: 1 1 25%;
+    margin: 0.5em 0em 3em 0em;
+}
+
+.buscar{
+    margin-right: 1em;
+}
+
+.btnGuardar{
+    margin-left: 1em;
+}
+
+.buttons{
+    display: flex;
+}
+
+.no-data{
+    text-align: center;
+    margin: 3em 0em;
+}
+
+td{
+    text-align: center;
+    width: 100px;
+}
+
+td > .pharm-dsc{
+    width: 150ch;
+    height: auto;
+    text-align: left;
 }

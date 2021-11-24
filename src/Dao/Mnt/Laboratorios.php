@@ -7,14 +7,23 @@ use Views\Renderer;
 
 class Laboratorios extends Table
 {
-    public static function obtenerLaboratorios($list, $numPerPage)
+    public static function obtenerLaboratorios($list, $search, $numPerPage)
     {
         $startFrom = (intval($list)-1)*$numPerPage;
-        $sqlStr = "SELECT * FROM laboratorio LIMIT :startFrom,:numPerPage;";
-        $parametros = array(
-            "startFrom" => $startFrom,
-            "numPerPage" => $numPerPage
-        );
+        if(!empty($search)){
+            $sqlStr = "SELECT * FROM laboratorio WHERE `laboratorioNombre` LIKE :search LIMIT :startFrom,:numPerPage;";
+            $parametros = array(
+                "search" => "%$search%",
+                "startFrom" => $startFrom,
+                "numPerPage" => $numPerPage
+            );
+        }else{
+            $sqlStr = "SELECT * FROM laboratorio LIMIT :startFrom,:numPerPage;";
+            $parametros = array(
+                "startFrom" => $startFrom,
+                "numPerPage" => $numPerPage
+            );
+        }
         return self::obtenerRegistros($sqlStr, $parametros);
     }
 
@@ -23,6 +32,16 @@ class Laboratorios extends Table
         $sqlStr = "SELECT * from laboratorio;";
         return self::obtenerRegistros($sqlStr, array());
     }
+
+    public static function obtenerNLaboratoriosB($search)
+    {
+        $sqlStr = "SELECT * FROM laboratorio WHERE `laboratorioNombre` LIKE :search;";
+        $parametros = array(
+            "search" => "%$search%"
+        );
+        return self::obtenerRegistros($sqlStr, $parametros);
+    }
+
     public static function obtenerLaboratorio($laboratorioId)
     {
         $sqlStr = "SELECT * from laboratorio where laboratorioId = :laboratorioId;";
