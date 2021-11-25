@@ -30,6 +30,7 @@ class Presentaciones extends PrivateController
         if(isset($_GET["search"])){
             $search = $_GET["search"];
             $viewData["search"] = true;
+            $viewData["numberPages"] = false;
             $viewData["searchValue"] = $search;
             $viewData["lista"] = \Dao\Mnt\Presentaciones::obtenerNPresentacionesB($search);
 
@@ -62,6 +63,7 @@ class Presentaciones extends PrivateController
         }else{
             $search = "";
             $viewData["search"] = false;
+            $viewData["numberPages"] = true;
             $viewData["lista"] = \Dao\Mnt\Presentaciones::obtenerNumPresentaciones();
 
             foreach ($viewData["lista"] as $producto) {

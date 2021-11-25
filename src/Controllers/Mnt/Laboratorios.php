@@ -8,7 +8,7 @@ class Laboratorios extends PrivateController
 {
     public function run():void
     {
-        \Utilities\Site::addLink("public/css/Laboratorios.css");
+        \Utilities\Site::addLink("public/css/Mantenimientos.css");
 
         $viewData = array(
             "totalLabs" => 0,
@@ -30,6 +30,7 @@ class Laboratorios extends PrivateController
         if(isset($_GET["search"])){
             $search = $_GET["search"];
             $viewData["search"] = true;
+            $viewData["numberPages"] = false;
             $viewData["searchValue"] = $search;
             $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNLaboratoriosB($search);
 
@@ -62,6 +63,7 @@ class Laboratorios extends PrivateController
         }else{
             $search = "";
             $viewData["search"] = false;
+            $viewData["numberPages"] = true;
             $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNumLaboratorios();
 
             foreach ($viewData["lista"] as $producto) {

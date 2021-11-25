@@ -61,9 +61,11 @@
     {{if previous}}
     <a class="page" href="index.php?page=mnt_laboratorios&list={{prevBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Anterior</a>
     {{endif previous}}
-    {{foreach nPages}}
-      <a class="page" href="index.php?page=mnt_laboratorios&list={{number}}&search={{searchValue}}">{{number}}</a>
-    {{endfor nPages}}
+    {{if numberPages}}
+      {{foreach nPages}}
+        <a class="page" href="index.php?page=mnt_laboratorios&list={{number}}">{{number}}</a>
+      {{endfor nPages}}
+    {{endif numberPages}}
     {{if next}}
       <a class="page" href="index.php?page=mnt_laboratorios&list={{nextBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Siguiente</a>
     {{endif next}}

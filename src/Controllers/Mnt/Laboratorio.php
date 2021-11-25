@@ -10,16 +10,18 @@ class Laboratorio extends PrivateController
 
     private function badEnding()
     {
-        \Utilities\Site::redirectToWithMsg("index.php?page=mnt_laboratorios", "Ocurrio algo inesperado. Intente nuevamente.");
+        \Utilities\Site::redirectTo("index.php?page=mnt_laboratorios", "Ocurrio algo inesperado. Intente nuevamente.");
     }
 
     private function goodEnding()
     {
-        \Utilities\Site::redirectToWithMsg("index.php?page=mnt_laboratorios", "La operacion se realizo con exito.");
+        \Utilities\Site::redirectTo("index.php?page=mnt_laboratorios", "La operacion se realizo con exito.");
     }
 
     public function run() :void
     {
+        \Utilities\Site::addLink("public/css/Mantenimientos.css");
+
         $viewData = array(
             "mode_dsc"=>"",
             "mode"=>"",

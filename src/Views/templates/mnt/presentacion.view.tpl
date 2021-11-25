@@ -14,7 +14,7 @@
     </section>
     <section class="data">
       <label class="descripcion" for="presentacionDescripcion">Descripcion</label>
-      <textarea name="presentacionDescripcion" type="text" rows="9" >{{presentacionDescripcion}}</textarea>
+      <textarea name="presentacionDescripcion" type="text" {{readonly}} rows="9" placeholder="Descripcion de la presentacion." >{{presentacionDescripcion}}</textarea>
     </section>
     {{if hasErrors}}
         <section>

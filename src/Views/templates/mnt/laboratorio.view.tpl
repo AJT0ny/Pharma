@@ -1,20 +1,21 @@
 <h1>{{mode_dsc}}</h1>
-<section>
+<section class="form">
+  <h1>{{mode_dsc}}</h1>
   <form action="index.php?page=mnt_laboratorio&mode={{mode}}&laboratorioId={{laboratorioId}}"
     method="POST" >
-    <section>
+    <section class="data">
     <label for="laboratorioId">Código</label>
     <input type="hidden" id="mode" name="mode" value="{{mode}}" />
     <input type="hidden" id="xsrftoken" name="xsrftoken" value="{{xsrftoken}}" />
     <input type="text" readonly name="laboratorioId" value="{{laboratorioId}}"/>
     </section>
-    <section>
+    <section class="data">
       <label for="laboratorioNombre">Nombre</label>
       <input type="text" {{readonly}} name="laboratorioNombre" value="{{laboratorioNombre}}" maxlength="50" placeholder="Nombre del Laboratorio."/>
     </section>
-    <section>
+    <section class="data">
       <label for="laboratorioDescripcion">Descripcion</label>
-      <input type="text" {{readonly}} name="laboratorioDescripcion" value="{{laboratorioDescripcion}}" placeholder="Descripcion del laboratorio."/>
+      <textarea name="laboratorioDescripcion" type="text" {{readonly}} rows="9" placeholder="Descripcion del laboratorio." >{{laboratorioDescripcion}}</textarea>
     </section>
     {{if hasErrors}}
         <section>
