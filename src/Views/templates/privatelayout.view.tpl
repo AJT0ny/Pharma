@@ -43,6 +43,32 @@
     {{{page_content}}}
   </main>
   <footer>
+    <div class="grid-3">
+      <div>
+        <img class="logo-pharma" src="public/imgs/pharma/PharmaDev.png" alt="logo" />
+        <hr>
+        <p class="contact">Contact info:</p>
+        <p class="contact-info">pharmadev@farma.com</p>
+        <p class="contact-info">+504 2785 6721</p>
+      </div>
+      <div class="site-map">
+        <h5 class="title-site">SITE MAP</h5>
+        <a class="list-pages" href="#">Productos</a>
+        <br>
+        <a class="list-pages" href="#">Support</a>
+        <br>
+        <a class="list-pages" href="#">Contacto</a>
+      </div>
+      <div class="socials">
+        <i class="fab fa-facebook-f social-logo"></i>
+        <i class="fab fa-instagram social-logo"></i>
+        <i class="fab fa-twitter social-logo"></i>
+        <i class="fab fa-youtube social-logo"></i>
+      </div>
+    </div>
+    <div>
+      <img class="white-line" src="public/imgs/pharma/white-line.png" alt="Linea blanca"/>
+    </div>
     <div>Todo los Derechos Reservados 2021 &copy;</div>
   </footer>
   {{foreach EndScripts}}

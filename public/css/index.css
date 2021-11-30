@@ -1,0 +1,373 @@
+.hero_text span {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #00ADB5;
+}
+.hero_text h2 {
+    font-size: 46px;
+    color: #333;
+    line-height: 52px; 
+    font-weight: 700;
+    margin: 10px 0;
+}
+.hero_text p {
+    margin-bottom: 35px; 
+    color: #333;
+}
+.primary-btn {
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 28px 10px;
+    color: #ffffff; 
+    text-transform: uppercase;
+    font-weight: 700;
+    background: #00ADB5;
+    letter-spacing: 2px; 
+    text-decoration: none;
+}
+.hero_item{
+    height: 530px; 
+    display: flex; 
+    align-items: center; 
+    padding: 75px;
+}
+.set-bg{
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: top center; 
+    background-attachment: fixed;
+    background-position: center;
+}
+.set-bg-featured{
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: top center;
+}
+.primary-btn {
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 28px 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: #00ADB5;
+    letter-spacing: 2px; 
+    text-decoration: none;
+}
+.pharmaDev{
+    margin-bottom: 0.8em; 
+    width: auto; 
+    height: 100px;
+}
+.logo-pharma{
+    margin-bottom: 0.8em; 
+    width: 180px; 
+    height: auto;
+}
+.center{
+    text-align: center;
+}
+.section-title {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.section-title h2 {
+	color: #1c1c1c;
+	font-weight: 700;
+	position: relative;
+}
+
+.section-title h2:after {
+	position: absolute;
+	left: 0;
+	bottom: -15px;
+	right: 0;
+	height: 4px;
+	width: 80px;
+	background: #00ADB5;
+	content: "";
+	margin: 0 auto;
+}
+.spad {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.container_featured_product{
+    padding: 10px;
+    background-color: #F3F6FB;
+    border-radius: 10px;
+}
+.featured {
+	padding-top: 80px;
+	padding-bottom: 40px;
+}
+.featured_item {
+	margin-bottom: 50px;
+}
+
+.featured_item:hover .featured_item_pic .featured_item_pic_hover {
+	bottom: 20px;
+}
+
+.featured_item_pic {
+	height: 210px;
+    width: 240px;
+	position: relative;
+	overflow: hidden;
+	background-position: center center;
+}
+
+.featured_item_pic_hover {
+	position: absolute;
+	left: 0;
+	bottom: -50px;
+	width: 100%;
+	text-align: center;
+	-webkit-transition: all, 0.5s;
+	-moz-transition: all, 0.5s;
+	-ms-transition: all, 0.5s;
+	-o-transition: all, 0.5s;
+	transition: all, 0.5s;
+}
+
+.featured_item_pic_hover li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 6px;
+}
+
+.featured_item_pic_hover li:last-child {
+	margin-right: 0;
+}
+
+.featured_item_pic_hover li:hover a {
+	background: #00ADB5;
+	border-color: #00ADB5;
+}
+
+.featured_item_pic_hover li:hover a i {
+	color: #ffffff;
+	transform: rotate(360deg);
+}
+
+.featured_item_pic_hover li a {
+	font-size: 16px;
+	color: #1c1c1c;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #ebebeb;
+	background: #ffffff;
+	display: block;
+	border-radius: 50%;
+	-webkit-transition: all, 0.5s;
+	-moz-transition: all, 0.5s;
+	-ms-transition: all, 0.5s;
+	-o-transition: all, 0.5s;
+	transition: all, 0.5s;
+}
+
+.featured_item_pic_hover li a i {
+	position: relative;
+	transform: rotate(0);
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.featured_item_text {
+	text-align: center;
+	padding-top: 15px;
+}
+
+.featured_item_text h6 {
+	margin-bottom: 10px;
+}
+
+.featured_item_text h6 a {
+	color: #252525;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.featured_item_text h5 {
+	color: #252525;
+	font-weight: 700;
+    font-size: 15px;
+}
+.featured_box{
+    padding: 0 50px;
+}
+
+
+.info_pharma{
+    background-color: #00ADB5;
+    border-radius: 20px;
+}
+.section-title-beneficios {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.section-title-beneficios h2 {
+	color: #fff;
+	font-weight: 700;
+	position: relative;
+}
+
+.section-title-beneficios h2:after {
+	position: absolute;
+	left: 0;
+	bottom: -15px;
+	right: 0;
+	height: 4px;
+	width: 80px;
+	background: #7ebec2;
+	content: "";
+	margin: 0 auto;
+}
+
+.info_icons{
+    display: flex;
+    justify-content: center;
+}
+
+.icon-box{
+    padding: 3em;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.icon-box:hover{
+    background-color: #7ebec2;
+    transition: all 0.5s;
+}
+
+.icon{
+    font-size: 60px;
+    color: #fff;
+}
+
+.icon-box > p{
+    padding-top: 10px;
+    width: 15ch;
+    text-align: center;
+    color: #fff;
+}
+
+/* Seccion de informacion de contacto */
+
+.contact-section {
+	padding-top: 80px;
+	padding-bottom: 50px;
+}
+
+.contact-info-box{
+    display: flex;
+    justify-content: center;
+}
+
+.contact_divs{
+    padding: 0 2em;
+}
+
+.contact_widget {
+	margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact_widget i {
+	font-size: 36px;
+	color: #00ADB5;
+}
+
+.contact_widget h4 {
+	color: #1c1c1c;
+	font-weight: 700;
+	margin-bottom: 6px;
+	margin-top: 18px;
+}
+
+.contact_widget p {
+	color: #666666;
+	margin-bottom: 0;
+}
+
+/* Seccion del mapa */
+.map {
+	height: 500px;
+	position: relative;
+}
+
+.map iframe {
+	width: 100%;
+}
+
+.map .map-inside {
+	position: absolute;
+	left: 50%;
+	top: 160px;
+	-webkit-transform: translateX(-175px);
+	-ms-transform: translateX(-175px);
+	transform: translateX(-175px);
+}
+
+.map .map-inside i {
+	font-size: 48px;
+	color: #7fad39;
+	position: absolute;
+	bottom: -75px;
+	left: 50%;
+	-webkit-transform: translateX(-18px);
+	-ms-transform: translateX(-18px);
+	transform: translateX(-18px);
+}
+
+.map .map-inside .inside-widget {
+	width: 350px;
+	background: #ffffff;
+	text-align: center;
+	padding: 23px 0;
+	position: relative;
+	z-index: 1;
+	-webkit-box-shadow: 0 0 20px 5px rgba(12, 7, 26, 0.15);
+	box-shadow: 0 0 20px 5px rgba(12, 7, 26, 0.15);
+}
+
+.map .map-inside .inside-widget:after {
+	position: absolute;
+	left: 50%;
+	bottom: -30px;
+	-webkit-transform: translateX(-6px);
+	-ms-transform: translateX(-6px);
+	transform: translateX(-6px);
+	border: 12px solid transparent;
+	border-top: 30px solid #ffffff;
+	content: "";
+	z-index: -1;
+}
+
+.map .map-inside .inside-widget h4 {
+	font-size: 22px;
+	font-weight: 700;
+	color: #1c1c1c;
+	margin-bottom: 4px;
+}
+
+.map .map-inside .inside-widget ul li {
+	list-style: none;
+	font-size: 16px;
+	color: #666666;
+	line-height: 26px;
+}

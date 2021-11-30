@@ -33,9 +33,10 @@ class Index extends PublicController
     {
         // Addlink para agregar archivos css propios de la pantalla
         // sin afectar todo el layout
-        \Utilities\Site::addLink("public/css/test.css");
+        \Utilities\Site::addLink("public/css/index.css");
 
         $viewData = array();
+        $viewData["productoRecientes"] = \Dao\Index::productosRecientes();
 
 
         \Views\Renderer::render("index", $viewData);
