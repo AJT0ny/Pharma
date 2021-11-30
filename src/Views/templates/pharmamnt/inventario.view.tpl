@@ -1,6 +1,6 @@
 <h1>{{mode_dsc}}</h1>
 <section>
-  <form action="index.php?page=mnt_inventario&mode={{mode}}&inventarioId={{inventarioId}}"
+  <form action="index.php?page=pharmamnt_inventario&mode={{mode}}&inventarioId={{inventarioId}}"
     method="POST" >
     <section>
     <label for="inventarioId">Código de inventario</label>
@@ -10,18 +10,22 @@
     <input type="text" readonly name="inventarioIddummy" value="{{inventarioId}}"/>
     </section>
     <section>
-      <label for="inventarioExistencias">laboratorio</label>
+      <label for="inventarioExistencias">Numero de Existencias</label>
       <input type="number" {{readonly}} name="inventarioExistencias" value="{{inventarioExistencias}}" placeholder="Existencias de Inventario"/>
     </section>
     <section>
-      <label for="inventarioFechaCaducidad">laboratorio</label>
+      <label for="inventarioFechaCaducidad">Fecha de Caducidad</label>
       <input type="date" {{readonly}} name="inventarioFechaCaducidad" value="{{inventarioFechaCaducidad}}" placeholder="Caducidad del Inventario"/>
     </section>
     <section>
-      <label for="productoId">laboratorio</label>
-      <input type="number" {{readonly}} name="productoId" value="{{productoId}}" placeholder="id del Producto"/>
+      <label for="productoId">Producto</label>
+      {{if readonly}}
+       <input type="hidden" id="productoIddummy" name="productoId" value="" />
+      {{endif readonly}}
+      <select id="productoId" name="productoId" {{if readonly}}disabled{{endif readonly}}>
+        {{prueba}}
+      </select>
     </section>
-    
     {{if hasErrors}}
         <section>
           <ul>
@@ -46,7 +50,7 @@
       document.getElementById("btnCancelar").addEventListener("click", function(e){
         e.preventDefault();
         e.stopPropagation();
-        window.location.assign("index.php?page=mnt_inventarios");
+        window.location.assign("index.php?page=pharmamnt_inventarios");
       });
   });
 </script>

@@ -9,15 +9,15 @@ class Laboratorios extends Table
 {
     public static function obtenerLaboratorios($list, $search, $numPerPage)
     {
-        $startFrom = (intval($list)-1)*$numPerPage;
-        if(!empty($search)){
+        $startFrom = (intval($list) - 1) * $numPerPage;
+        if (!empty($search)) {
             $sqlStr = "SELECT * FROM laboratorio WHERE `laboratorioNombre` LIKE :search LIMIT :startFrom,:numPerPage;";
             $parametros = array(
                 "search" => "%$search%",
                 "startFrom" => $startFrom,
                 "numPerPage" => $numPerPage
             );
-        }else{
+        } else {
             $sqlStr = "SELECT * FROM laboratorio LIMIT :startFrom,:numPerPage;";
             $parametros = array(
                 "startFrom" => $startFrom,
@@ -75,5 +75,15 @@ class Laboratorios extends Table
             "laboratorioId" => intval($laboratorioId)
         );
         return self::executeNonQuery($sqlstr, $parametros);
+    }
+    public static function listarLaboratorios()
+    {
+        $sqlStr = "SELECT laboratorioId, laboratorioNombre FROM laboratorio;";
+        return self::obtenerRegistros($sqlStr, array());
+    }
+    public static function countrows()
+    {
+        $sqlStr = "SELECT COUNT(*) FROM laboratorio;";
+        return self::obtenerUnRegistro($sqlStr, array());
     }
 }

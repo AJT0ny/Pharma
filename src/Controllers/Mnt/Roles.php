@@ -11,9 +11,9 @@ class Roles extends PrivateController
     {
         $viewData = array();
         $viewData["items"] = \Dao\Security\Security::getRols();
-        $viewData["new_enabled"] = $this->isFeatureAutorized(("mnt_roles_new"));
-        $viewData["edit_enabled"] = $this->isFeatureAutorized(("mnt_roles_edit"));
-        $viewData["delete_enabled"] = $this->isFeatureAutorized(("mnt_roles_delete"));
+        $viewData["new_enabled"] = true;
+        $viewData["edit_enabled"] = true;
+        $viewData["delete_enabled"] = true;
         Renderer::render("mnt/roles", $viewData);
     }
 }

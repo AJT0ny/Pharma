@@ -9,14 +9,14 @@ class Producto extends PublicController
     private function noFunc()
     {
         \Utilities\Site::redirectToWithMsg(
-            "index.php?page=mnt_roles",
+            "index.php?page=pharmamnt_productos",
             "Ocurrió algo inesperado. Intente Nuevamente."
         );
     }
     private function siFunc()
     {
         \Utilities\Site::redirectToWithMsg(
-            "index.php?page=mnt_roles",
+            "index.php?page=pharmamnt_productos",
             "Operación ejecutada Satisfactoriamente!"
         );
     }
@@ -49,6 +49,17 @@ class Producto extends PublicController
             "DEL" => "Eliminando Producto (%s) %s",
             "DSP" => "Detalle de Producto (%s) %s"
         );
+
+        //combobox
+        $tmpLaboratorios = \Dao\Mnt\Laboratorios::listarLaboratorios();
+        $conteo = \Dao\Mnt\Laboratorios::countrows();
+        $testeo = $conteo["COUNT(*)"];
+        //ordenar en Option
+
+        for ($i = 0; $i < $testeo; $i++) {
+
+            $viewData["prueba"] = $viewData["prueba"] . " <option value=" . $tmpLaboratorios[$i]["laboratorioId"] . " >" . $tmpLaboratorios[$i]["laboratorioNombre"] . "</option> ";
+        }
 
         if ($this->isPostBack()) {
             // se ejecuta al dar click sobre guardar
@@ -202,8 +213,18 @@ class Producto extends PublicController
             $viewData["presentacionId"] = $tmpProductos["presentacionId"];
             $viewData["laboratorioId"] = $tmpProductos["laboratorioId"];
             $viewData["productoImagen"] = $tmpProductos["productoImagen"];
-            $viewData["productoActivo_ACT"] = $tmpProductos["productoActivo"] == "ACT" ? "selected" : "";
-            $viewData["productoActivo_INA"] = $tmpProductos["productoActivo"] == "INA" ? "selected" : "";
+            $viewData["productoActivo_ACT"] = $tmpProductos["productoActivo"] == 1 ? "selected" : "";
+            $viewData["productoActivo_INA"] = $tmpProductos["productoActivo"] == 0 ? "selected" : "";
+
+            //combobox
+            //ordenar en Option
+            for ($i = 0; $i < $testeo; $i++) {
+                if ($tmpLaboratorios[$i]["laboratorioId"] == $tmpProductos["laboratorioId"]) {
+                    $viewData["prueba"] = $viewData["prueba"] . " <option value=" . $tmpLaboratorios[$i]["laboratorioId"] . " selected >" . $tmpLaboratorios[$i]["laboratorioNombre"] . "</option> ";
+                }
+                $viewData["prueba"] = $viewData["prueba"] . " <option value=" . $tmpLaboratorios[$i]["laboratorioId"] . " >" . $tmpLaboratorios[$i]["laboratorioNombre"] . "</option> ";
+            }
+
             $viewData["mode_dsc"]  = sprintf(
                 $modeDscArr[$viewData["mode"]],
                 $viewData["productoId"],

@@ -53,7 +53,12 @@
     </section>
     <section>
       <label for="laboratorioId">Laboratorio</label>
-      <input type="number" {{readonly}} name="laboratorioId" value="{{laboratorioId}}" placeholder="id de Laboratorio"/>
+      {{if readonly}}
+       <input type="hidden" id="laboratorioIddummy" name="laboratorioId" value="" />
+      {{endif readonly}}
+      <select id="laboratorioId" name="laboratorioId" {{if readonly}}disabled{{endif readonly}}>
+        {{prueba}}
+      </select>
     </section>
     <section>
       <label for="productoImagen">descripcion</label>

@@ -63,4 +63,16 @@ class Productos extends Table
         );
         return self::executeNonQuery($sqlstr, $parametros);
     }
+
+    public static function listarproductos()
+    {
+        $sqlStr = "SELECT productoId, productoNombre FROM producto;";
+        return self::obtenerRegistros($sqlStr, array());
+    }
+
+    public static function contarrows()
+    {
+        $sqlStr = "SELECT COUNT(*) FROM producto;";
+        return self::obtenerUnRegistro($sqlStr, array());
+    }
 }

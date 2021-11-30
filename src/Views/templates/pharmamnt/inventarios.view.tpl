@@ -21,13 +21,13 @@
       {{foreach items}}
       <tr>
         <td>{{inventarioId}}</td>
-        <td><a href="index.php?page=mnt_inventario&mode=DSP&inventarioId={{inventarioId}}">{{inventarioExistencias}}</a></td>
+        <td><a href="index.php?page=pharmamnt_inventario&mode=DSP&inventarioId={{inventarioId}}">{{inventarioExistencias}}</a></td>
         <td>{{inventarioFechaCaducidad}}</td>
         <td>{{productoId}}</td>
         <td>
           {{if ~edit_enabled}}
           <form action="index.php" method="get">
-             <input type="hidden" name="page" value="mnt_inventario"/>
+             <input type="hidden" name="page" value="pharmamnt_inventario"/>
               <input type="hidden" name="mode" value="UPD" />
               <input type="hidden" name="inventarioId" value={{inventarioId}} />
               <button type="submit">Editar</button>
@@ -35,7 +35,7 @@
           {{endif ~edit_enabled}}
           {{if ~delete_enabled}}
           <form action="index.php" method="get">
-             <input type="hidden" name="page" value="mnt_inventario"/>
+             <input type="hidden" name="page" value="pharmamnt_inventario"/>
               <input type="hidden" name="mode" value="DEL" />
               <input type="hidden" name="inventarioId" value={{inventarioId}} />
               <button type="submit">Eliminar</button>
@@ -52,7 +52,7 @@
       document.getElementById("btnAdd").addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        window.location.assign("index.php?page=mnt_inventario&mode=INS&inventarioId=0");
+        window.location.assign("index.php?page=pharmamnt_inventario&mode=INS&inventarioId=0");
       });
     });
 </script>
