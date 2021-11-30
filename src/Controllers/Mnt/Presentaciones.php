@@ -4,7 +4,7 @@ namespace Controllers\Mnt;
 
 use Controllers\PrivateController;
 
-class Laboratorios extends PrivateController
+class Presentaciones extends PrivateController
 {
     public function run():void
     {
@@ -32,7 +32,7 @@ class Laboratorios extends PrivateController
             $viewData["search"] = true;
             $viewData["numberPages"] = false;
             $viewData["searchValue"] = $search;
-            $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNLaboratoriosB($search);
+            $viewData["lista"] = \Dao\Mnt\Presentaciones::obtenerNPresentacionesB($search);
 
             foreach ($viewData["lista"] as $producto) {
                 $viewData["totalLabs"] = $viewData["totalLabs"] + 1; 
@@ -64,7 +64,7 @@ class Laboratorios extends PrivateController
             $search = "";
             $viewData["search"] = false;
             $viewData["numberPages"] = true;
-            $viewData["lista"] = \Dao\Mnt\Laboratorios::obtenerNumLaboratorios();
+            $viewData["lista"] = \Dao\Mnt\Presentaciones::obtenerNumPresentaciones();
 
             foreach ($viewData["lista"] as $producto) {
                 $viewData["totalLabs"] = $viewData["totalLabs"] + 1; 
@@ -92,9 +92,9 @@ class Laboratorios extends PrivateController
             }
         }
 
-        $viewData["laboratorio"] = \Dao\Mnt\Laboratorios::obtenerLaboratorios($list, $search, $numPerPage);
+        $viewData["presentacion"] = \Dao\Mnt\Presentaciones::obtenerPresentaciones($list, $search, $numPerPage);
 
-        \Views\Renderer::render("mnt/Laboratorios", $viewData);
+        \Views\Renderer::render("mnt/Presentaciones", $viewData);
     }
 }
 

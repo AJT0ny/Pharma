@@ -1,14 +1,14 @@
-<h1 class="page-title">Laboratorios.</h1>
+<h1 class="page-title">Presentaciones.</h1>
 <hr>
 <div class="grid-2">
   <section class="desc-sect">
     <p class="dsc">
-      Lista de laboratorios que proveen medicamentos, presentan su id, nombre y una pequeña descripcion.
+      Lista de las presentaciones que tienen los medicamentos. Los datos presentados son id, nombre y descripcion.
     </p>
   </section>
   <section class="search">
     <form method="GET">
-      <input type="hidden" name="page" value="mnt_laboratorios">
+      <input type="hidden" name="page" value="mnt_presentaciones">
       <input type="hidden" name="list" value="{{list}}">
       <label class="buscar" for="search">Buscar por nombre:</label>
       <input type="text" name="search" value="{{searchValue}}"/>
@@ -29,29 +29,29 @@
       </tr>
     </thead>
     <tbody>
-      {{foreach laboratorio}}
+      {{foreach presentacion}}
       <tr>
-        <td>{{laboratorioId}}</td>
-        <td><a href="index.php?page=mnt_laboratorio&mode=DSP&laboratorioId={{laboratorioId}}">{{laboratorioNombre}}</a></td>
-        <td><div class="pharm-dsc">{{laboratorioDescripcion}}</div></td>
+        <td>{{presentacionId}}</td>
+        <td><a href="index.php?page=mnt_presentacion&mode=DSP&presentacionId={{presentacionId}}">{{presentacionNombre}}</a></td>
+        <td><div class="pharm-dsc">{{presentacionDescripcion}}</div></td>
         <td>
           <div class="buttons">
               <form action="index.php" method="get">
-                <input type="hidden" name="page" value="mnt_laboratorio"/>
+                <input type="hidden" name="page" value="mnt_presentacion"/>
                 <input type="hidden" name="mode" value="UPD" />
-                <input type="hidden" name="laboratorioId" value={{laboratorioId}} />
+                <input type="hidden" name="presentacionId" value={{presentacionId}} />
                 <button type="submit">Editar</button>
               </form>
               <form action="index.php" method="get">
-                <input type="hidden" name="page" value="mnt_laboratorio"/>
+                <input type="hidden" name="page" value="mnt_presentacion"/>
                 <input type="hidden" name="mode" value="DEL" />
-                <input type="hidden" name="laboratorioId" value={{laboratorioId}} />
+                <input type="hidden" name="presentacionId" value={{presentacionId}} />
               <button type="submit">Eliminar</button>
             </form>
           </div>
         </td>
       </tr>
-      {{endfor laboratorio}}
+      {{endfor presentacion}}
     </tbody>
   </table>
   {{if noData}}
@@ -59,15 +59,15 @@
   {{endif noData}}
   <div class="pages">
     {{if previous}}
-    <a class="page" href="index.php?page=mnt_laboratorios&list={{prevBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Anterior</a>
+    <a class="page" href="index.php?page=mnt_presentaciones&list={{prevBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Anterior</a>
     {{endif previous}}
     {{if numberPages}}
       {{foreach nPages}}
-        <a class="page" href="index.php?page=mnt_laboratorios&list={{number}}">{{number}}</a>
+        <a class="page" href="index.php?page=mnt_presentaciones&list={{number}}">{{number}}</a>
       {{endfor nPages}}
     {{endif numberPages}}
     {{if next}}
-      <a class="page" href="index.php?page=mnt_laboratorios&list={{nextBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Siguiente</a>
+      <a class="page" href="index.php?page=mnt_presentaciones&list={{nextBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Siguiente</a>
     {{endif next}}
   </div>
 </section>
@@ -76,7 +76,7 @@
       document.getElementById("btnAdd").addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        window.location.assign("index.php?page=mnt_laboratorio&mode=INS&laboratorioId=0");
+        window.location.assign("index.php?page=mnt_presentacion&mode=INS&presentacionId=0");
       });
     });
 </script>

@@ -5,17 +5,17 @@ namespace Controllers\Mnt;
 use Controllers\PrivateController;
 use Views\Renderer;
 
-class Laboratorio extends PrivateController
+class presentacion extends PrivateController
 {
 
     private function badEnding()
     {
-        \Utilities\Site::redirectTo("index.php?page=mnt_laboratorios", "Ocurrio algo inesperado. Intente nuevamente.");
+        \Utilities\Site::redirectToWithMsg("index.php?page=mnt_presentaciones", "Ocurrio algo inesperado. Intente nuevamente.");
     }
 
     private function goodEnding()
     {
-        \Utilities\Site::redirectTo("index.php?page=mnt_laboratorios", "La operacion se realizo con exito.");
+        \Utilities\Site::redirectToWithMsg("index.php?page=mnt_presentaciones", "La operacion se realizo con exito.");
     }
 
     public function run() :void
@@ -25,9 +25,9 @@ class Laboratorio extends PrivateController
         $viewData = array(
             "mode_dsc"=>"",
             "mode"=>"",
-            "laboratorioId"=>"",
-            "laboratorioNombre"=>"",
-            "laboratorioDescripcion"=>"",
+            "presentacionId"=>"",
+            "presentacionNombre"=>"",
+            "presentacionDescripcion"=>"",
             "hasErrors"=> false,
             "Errors"=> array(),
             "showaction"=> true,
@@ -35,18 +35,18 @@ class Laboratorio extends PrivateController
         );
     
         $modeDscArr = array(
-            "INS" => "Nuevo Laboratorio",
-            "UPD" => "Editando Laboratorio (%s) %s",
-            "DEL" => "Eliminando Laboratorio (%s) %s",
-            "DSP" => "Detalle de Laboratorio (%s) %s",
+            "INS" => "Nueva Presentacion",
+            "UPD" => "Editando Presentacion (%s) %s",
+            "DEL" => "Eliminando Presentacion (%s) %s",
+            "DSP" => "Detalle de Presentacion (%s) %s",
         );
     
         if ($this->isPostBack()){
             // Se ejecuta al dar click sobre guardar
             $viewData["mode"] = $_POST["mode"];
-            $viewData["laboratorioId"] = $_POST["laboratorioId"];
-            $viewData["laboratorioNombre"] = $_POST["laboratorioNombre"];
-            $viewData["laboratorioDescripcion"] = $_POST["laboratorioDescripcion"];
+            $viewData["presentacionId"] = $_POST["presentacionId"];
+            $viewData["presentacionNombre"] = $_POST["presentacionNombre"];
+            $viewData["presentacionDescripcion"] = $_POST["presentacionDescripcion"];
             $viewData["xsrftoken"] = $_POST["xsrftoken"];
 
             if (!isset($_SESSION["xsrftoken"]) || $viewData["xsrftoken"] != $_SESSION["xsrftoken"]) {
@@ -54,12 +54,12 @@ class Laboratorio extends PrivateController
             }
             //Validaciones de errores
     
-            if(\Utilities\Validators::IsEmpty($viewData["laboratorioNombre"])){
+            if(\Utilities\Validators::IsEmpty($viewData["presentacionNombre"])){
                 $viewData["hasErrors"] = true;
                 $viewData["Errors"][] = "El nombre no puede estar vacio.";
             }
 
-            if(\Utilities\Validators::IsEmpty($viewData["laboratorioDescripcion"])){
+            if(\Utilities\Validators::IsEmpty($viewData["presentacionDescripcion"])){
                 $viewData["hasErrors"] = true;
                 $viewData["Errors"][] = "La descripcion no puede estar vacia.";
             }
@@ -68,26 +68,26 @@ class Laboratorio extends PrivateController
             if(!$viewData["hasErrors"]){
                 switch($viewData["mode"]){
                     case "INS":
-                        if (\Dao\Mnt\Laboratorios::crearLaboratorio(
-                            $viewData["laboratorioNombre"],
-                            $viewData["laboratorioDescripcion"]
+                        if (\Dao\Mnt\Presentaciones::crearPresentacion(
+                            $viewData["presentacionNombre"],
+                            $viewData["presentacionDescripcion"]
                         )) {
                             $this->goodEnding();
                         }
                         break;
                     case "UPD":
-                        if(\Dao\Mnt\Laboratorios::editarLaboratorio(
-                            $viewData["laboratorioNombre"],
-                            $viewData["laboratorioDescripcion"],
-                            $viewData["laboratorioId"],
+                        if(\Dao\Mnt\Presentaciones::editarPresentacion(
+                            $viewData["presentacionNombre"],
+                            $viewData["presentacionDescripcion"],
+                            $viewData["presentacionId"],
                         )
                         ){
                             $this->goodEnding();
                         }
                         break;
                     case "DEL":
-                        if(\Dao\Mnt\Laboratorios::eliminarLaboratorio(
-                            $viewData["laboratorioId"]
+                        if(\Dao\Mnt\Presentaciones::eliminarPresentacion(
+                            $viewData["presentacionId"]
                         )
                         ){
                             $this->goodEnding();
@@ -108,8 +108,8 @@ class Laboratorio extends PrivateController
                 $this->badEnding();
             }
 
-            if(isset($_GET["laboratorioId"])){
-                $viewData["laboratorioId"] = $_GET["laboratorioId"];
+            if(isset($_GET["presentacionId"])){
+                $viewData["presentacionId"] = $_GET["presentacionId"];
             } else {
                 if($viewData["mode"] !== "INS"){
                    $this->badEnding();
@@ -120,13 +120,13 @@ class Laboratorio extends PrivateController
         if($viewData["mode"] == "INS"){
             $viewData["mode_dsc"] = $modeDscArr["INS"];
         } else {
-            $tmpUsuario = \Dao\Mnt\Laboratorios::obtenerLaboratorio($viewData["laboratorioId"]);
-            $viewData["laboratorioNombre"] = $tmpUsuario["laboratorioNombre"];
-            $viewData["laboratorioDescripcion"] = $tmpUsuario["laboratorioDescripcion"];
+            $tmpUsuario = \Dao\Mnt\Presentaciones::obtenerPresentacion($viewData["presentacionId"]);
+            $viewData["presentacionNombre"] = $tmpUsuario["presentacionNombre"];
+            $viewData["presentacionDescripcion"] = $tmpUsuario["presentacionDescripcion"];
             $viewData["mode_dsc"] = sprintf(
                 $modeDscArr[$viewData["mode"]],
-                $viewData["laboratorioId"],
-                $viewData["laboratorioNombre"]
+                $viewData["presentacionId"],
+                $viewData["presentacionNombre"]
             );
             if ($viewData["mode"] == "DSP"){
                 $viewData["showaction"] = false;
@@ -140,7 +140,7 @@ class Laboratorio extends PrivateController
             $_SESSION["xsrftoken"] = $viewData["xsrftoken"];
         }
     
-        Renderer::render("mnt/laboratorio", $viewData);
+        Renderer::render("mnt/presentacion", $viewData);
 
     }
 

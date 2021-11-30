@@ -35,6 +35,12 @@ class Nav
                 "nav_label" => "Laboratorios"
             );
         }
+        if (\Utilities\Security::isAuthorized($userID, "WW_Presentaciones")) {
+            $tmpNAVIGATION[] = array(
+                "nav_url" => "index.php?page=mnt_presentaciones",
+                "nav_label" => "Presentaciones"
+            );
+        }
 
         \Utilities\Context::setContext("NAVIGATION", $tmpNAVIGATION);
     }
