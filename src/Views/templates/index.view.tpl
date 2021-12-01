@@ -23,9 +23,9 @@
                         <div class="container_featured_product">
                             <div class="featured_item">
                                 <div class="featured_item_pic set-bg-featured" style="background-image: url('public/imgs/pharma/productos/{{productoImagen}}');">
-                                    <ul class="featured_item_pic_hover">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
+                                    <div class="featured_item_pic_hover ">
+                                        <span><a href="#"><i class="fa fa-shopping-cart "></i></a></span>
+                                    </div>
                                 </div>
                                 <div class="featured_item_text">
                                     <h6><a href="#">{{productoNombre}}</a></h6>

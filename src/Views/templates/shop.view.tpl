@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
+                    <div class="sidebar bg-sidebar p-4">
                         <div class="sidebar__item">
                             <h4>Department</h4>
                             <ul>
@@ -86,9 +86,9 @@
                             <div class="product__item__container">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" style="background-image: url('public/imgs/pharma/productos/{{productoImagen}}');">
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="index.php?page=details&productoNombre={{productoId}}"><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
+                                        <div class="product__item__pic__hover">
+                                            <span><a href="index.php?page=details&productoNombre={{productoId}}"><i class="fa fa-shopping-cart"></i></a></span>
+                                        </div>
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a href="index.php?page=details&productoNombre={{productoId}}">{{productoNombre}}</a></h6>
