@@ -24,11 +24,11 @@
                             <div class="featured_item">
                                 <div class="featured_item_pic set-bg-featured" style="background-image: url('public/imgs/pharma/productos/{{productoImagen}}');">
                                     <div class="featured_item_pic_hover ">
-                                        <span><a href="#"><i class="fa fa-shopping-cart "></i></a></span>
+                                        <span><a href="index.php?page=details&productoId={{productoId}}"><i class="fa fa-shopping-cart "></i></a></span>
                                     </div>
                                 </div>
                                 <div class="featured_item_text">
-                                    <h6><a href="#">{{productoNombre}}</a></h6>
+                                    <h6><a href="index.php?page=details&productoId={{productoId}}">{{productoNombre}}</a></h6>
                                     <h5>${{productoPrecio}}</h5>
                                 </div>
                             </div>

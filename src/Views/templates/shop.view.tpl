@@ -42,7 +42,7 @@
                                 <h4>Latest Products</h4>
                                 <div class="latest-product__slider">
                                     {{foreach productoReciente}}
-                                        <a href="#" class="latest-product__item">
+                                        <a href="index.php?page=details&productoId={{productoId}}" class="latest-product__item">
                                             <div class="latest-pic-container">
                                                 <img class="latest-product__item__pic" src="public/imgs/pharma/productos/{{productoImagen}}" alt="{{productoNombre}}">
                                             </div>
@@ -87,7 +87,7 @@
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" style="background-image: url('public/imgs/pharma/productos/{{productoImagen}}');">
                                         <div class="product__item__pic__hover">
-                                            <span><a href="index.php?page=details&productoNombre={{productoId}}"><i class="fa fa-shopping-cart"></i></a></span>
+                                            <span><a href="index.php?page=details&productoId={{productoId}}"><i class="fa fa-shopping-cart"></i></a></span>
                                         </div>
                                     </div>
                                     <div class="product__item__text">
