@@ -1,0 +1,47 @@
+.text-center{
+    text-align: center;
+    opacity: 1;
+}
+.section-head-login{
+    background-color: #2d3c3db7;
+    color: rgb(255, 250, 244);
+    
+}
+.label-data{
+    background: transparent;
+    border: 0 solid;
+    border-bottom: 1px solid black;
+    align-self: center;
+}
+.button{
+    font-weight: 700 ;
+    font-size: 17px;
+    color: #00ADB5;
+    display: inline-block;
+    background: linear-gradient(to right, #00ADB5 0%, #00ADB5 50%, #ffffff 50%, #ffffff 100%);
+    background-size: 200% 100%;
+    background-position: 100% 200%;
+    transition: background-position 0.3s;
+	text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+	transition: all .1s ease-in;
+	border: 1px solid #00ADB5;
+	text-decoration-line: none;
+	border-radius: 15px;
+}
+.button:hover{
+    background-position:0 0;
+	color: #ffffff;
+	transition: all .6s ease-in;
+	text-shadow: 0 0 15px rgba(255,255,255,.5), 0 0 10px rgba(255,255,255,.5);
+	border-radius: 10px;
+}
+.icon{
+    position: relative;
+    left: 50px;
+    top: 50px;
+}
+.linea{
+    margin-top: -20px;
+    margin-bottom: 30px;
+    margin-left: 80px;
+}

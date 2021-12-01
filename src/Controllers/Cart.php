@@ -8,7 +8,7 @@ class Cart extends PublicController
 {
     public function run(): void
     {
-        \Utilities\Site::addLink("public/css/cart.css");
+        \Utilities\Site::addLink("public/css/Cart.css");
 
         $viewData= array();
 

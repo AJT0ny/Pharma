@@ -11,6 +11,8 @@ class Login extends \Controllers\PublicController
 
     public function run() :void
     {
+        \Utilities\Site::addLink("public/css/login.css");
+
         if ($this->isPostBack()) {
             $this->txtEmail = $_POST["txtEmail"];
             $this->txtPswd = $_POST["txtPswd"];
