@@ -7,6 +7,7 @@ use Controllers\PublicController;
 class Checkout extends PublicController{
     public function run():void
     {
+        \Utilities\Site::addLink("public/css/Checkout.css");
         $viewData = array();
         if ($this->isPostBack()) {
             $PayPalOrder = new \Utilities\Paypal\PayPalOrder(

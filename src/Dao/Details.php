@@ -27,6 +27,49 @@ class Details extends Table
         );
         return self::obtenerRegistros($sqlStr, $parametros);
     }
+
+    public static function crearCarrito($userId, $carritoEstado, $usuario_usercod)
+    {
+        $sqlStr = "INSERT INTO carrito (`usuarioId`, `carritoCreadoEl`, `carritoActualizadoEl`, `carritoEstado`, `usuario_usercod`) 
+        VALUES (:userId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, :carritoEstado, :usuario_usercod);";
+        $parametros = array(
+            "userId" => $userId,
+            "carritoEstado" => $carritoEstado,
+            "usuario_usercod" => $usuario_usercod
+        );
+        return self::executeNonQuery($sqlStr, $parametros);
+    }
+
+    public static function infoCarrito($usuario_usercod)
+    {
+        $sqlStr = "SELECT * FROM carrito WHERE usuario_usercod = :usuario_usercod;";
+        $parametros = array(
+            "usuario_usercod" => $usuario_usercod
+        );
+        return self::obtenerUnRegistro($sqlStr, $parametros);
+    }
+
+    public static function existeCarrito($usuario_usercod)
+    {
+        $sqlStr = "SELECT * FROM carrito WHERE usuario_usercod = :usuario_usercod;";
+        $parametros = array(
+            "usuario_usercod" => $usuario_usercod
+        );
+        return self::obtenerRegistros($sqlStr, $parametros);
+    }
+
+    public static function agregarProductoACarrito($productoId, $carritoId, $carritoProductoCantidad, $carritoProductoActivo)
+    {
+        $sqlStr = "INSERT INTO `pharma`.`carritoproducto` (`productoId`, `carritoId`, `carritoProductoFechaAñadido`, `carritoProductoFechaActualizado`, `carritoProductoCantidad`, `carritoProductoActivo`) 
+        VALUES (:productoId, :carritoId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, :carritoProductoCantidad, :carritoProductoActivo);";
+        $parametros = array(
+            "productoId" => intval($productoId),
+            "carritoId" => intval($carritoId),
+            "carritoProductoCantidad" => intval($carritoProductoCantidad),
+            "carritoProductoActivo" => $carritoProductoActivo
+        );
+        return self::executeNonQuery($sqlStr, $parametros);
+    }
 }
 
 ?>

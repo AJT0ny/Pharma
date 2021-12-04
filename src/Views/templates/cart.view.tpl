@@ -21,72 +21,30 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{foreach productoEnCarrito}}
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="public/imgs/pharma/productos/{{productoImagen}}" alt="">
+                                        <h5>{{productoNombre}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        ${{productoPrecio}}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <input readonly type="text" value="{{carritoProductoCantidad}}">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        {{totalProducto}}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <i class="fas fa-times close-icon"></i>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <i class="fas fa-times close-icon"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <i class="fas fa-times close-icon"></i>
-                                    </td>
-                                </tr>
+                                {{endfor productoEnCarrito}}
                             </tbody>
                         </table>
                     </div>
@@ -101,13 +59,18 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
+                    <div class="msg-time">
+                        <p>
+                            Nota: <br>El carrito se limpiara luego de 24 horas, agradeceriamos que realice sus compras antes de este periodo de tiempo.<br>
+                        </p>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Total del carrito</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span>{{subTotalCarrito}}</span></li>
+                            <li>Total <span>{{totalCarrito}}</span></li>
                         </ul>
                         <a href="#" class="primary-btn">Realizar Compra</a>
                     </div>

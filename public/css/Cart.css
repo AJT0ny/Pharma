@@ -33,7 +33,6 @@
 
 .shoping__cart__table table {
 	width: 100%;
-	text-align: center;
 }
 
 .shoping__cart__table table thead tr {
@@ -57,13 +56,15 @@
 	border-bottom: 1px solid #ebebeb;
 }
 
-.shoping__cart__table table tbody tr td.shoping__cart__item {
+.shoping__cart__table table tbody tr td .shoping__cart__item {
 	width: 630px;
 	text-align: left;
 }
 
 .shoping__cart__table table tbody tr td.shoping__cart__item img {
 	display: inline-block;
+	width: 80px;
+	height: auto;
 	margin-right: 25px;
 }
 
@@ -171,6 +172,16 @@
 
 .primary-btn.cart-btn.cart-btn-right {
 	float: right;
+}
+
+.msg-time{
+	padding: 30px;
+	padding-top: 20px;
+	margin-top: 50px;
+}
+
+.msg-time p{
+	color: #6f6f6f;
 }
 
 .shoping__checkout {

@@ -28,6 +28,17 @@ abstract class PublicController implements IController
      */
     public function __construct()
     {
+        if(!isset($_SESSION["tmpUsuario"])){
+            $_SESSION["startTime"] = time();
+            $_SESSION["tmpUsuario"] = md5("user". random_int(10000, 99999));
+        }else{
+            if(isset($_SESSION["startTime"]) && ((time() - $_SESSION["startTime"]) > 86400)){
+                $_SESSION["startTime"] = time();
+                $_SESSION["antesUsuario"] = $_SESSION["tmpUsuario"];
+                $_SESSION["tmpUsuario"] = md5("user". random_int(10000, 99999));
+            }
+        }
+
         $this->name = get_class($this);
         if (\Utilities\Security::isLogged()){
             $layoutFile = \Utilities\Context::getContextByKey("PRIVATE_LAYOUT");

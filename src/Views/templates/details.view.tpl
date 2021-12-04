@@ -7,31 +7,36 @@
 
     <!-- Product Details Section Begin -->
 <section class="product-details spad">
-    <form method="GET" >
+    <form method="POST" >
+        <input type="hidden" name="userId" value="{{userId}}">
+        <input type="hidden" name="usuario_usercod" value="{{usuario_usercod}}">
+        <input type="hidden" name="carritoEstado" value="{{carritoEstado}}">
+        <input type="hidden" name="carritoId" value="{{carritoId}}">
+        <input type="hidden" name="carritoProductoActivo" value="{{carritoProductoActivo}}">
+        <input type="hidden" name="productoId" value="{{productoId}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="public/imgs/pharma/productos/{{productoImagen}}" alt="">
+                                src="public/imgs/pharma/productos/{{productoImagen}}" alt="{{productoNombre}}">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>{{productoNombre}}</h3>
-                    
                         <div class="product__details__price">${{productoPrecio}}</div>
                         <p>{{productoDescripcion}}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" maxlength="3" value="1">
+                                    <input type="text" name="carritoProductoCantidad" maxlength="2" value="{{carritoProductoCantidad}}">
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" value="Añadir al carrito" class="primary-btn">
+                        <button class="primary-btn" type="submit" name="btnGuardar" value="G">Añadir al carrito</button>
                         <ul>
                             <li><b>Laboratorio</b> <span>{{laboratorioNombre}}</span></li>
                             <li><b>Disponibilidad</b> <span>{{inventarioExistencias}}</span></li>
