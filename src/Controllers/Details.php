@@ -17,7 +17,7 @@ class Details extends PublicController
 
     public function run() :void
     {
-        \Utilities\Site::addLink("public/css/details.css");
+        \Utilities\Site::addLink("public/css/details1.css");
 
         $viewData = array(
             "productoId" => 0,
@@ -32,6 +32,7 @@ class Details extends PublicController
             "usuario_usercod" => 0,
             "carritoId" => 0,
             "carritoProductoCantidad" => 1,
+            "carritoProductoTotal" => 0,
             "carritoProductoActivo" => 1
         );
 
@@ -42,6 +43,9 @@ class Details extends PublicController
             $viewData["productoId"] = $_POST["productoId"];
             $viewData["carritoProductoCantidad"] = $_POST["carritoProductoCantidad"];
             $viewData["carritoProductoActivo"] = $_POST["carritoProductoActivo"];
+
+            $totalProducto = $_SESSION["productoPrecio"] * $viewData["carritoProductoCantidad"];
+            $viewData["carritoProductoTotal"] = $totalProducto;
 
             $existeCarrito = \Dao\Details::existeCarrito($viewData["usuario_usercod"]);
             $carritoExiste = 0;
@@ -62,6 +66,7 @@ class Details extends PublicController
                         $viewData["productoId"],
                         $viewData["carritoId"],
                         $viewData["carritoProductoCantidad"],
+                        $viewData["carritoProductoTotal"],
                         $viewData["carritoProductoActivo"],
                     )){
                         $this->goodEnding();
@@ -77,6 +82,7 @@ class Details extends PublicController
                     $viewData["productoId"],
                     $viewData["carritoId"],
                     $viewData["carritoProductoCantidad"],
+                    $viewData["carritoProductoTotal"],
                     $viewData["carritoProductoActivo"],
                 )){
                     $this->goodEnding();
@@ -101,6 +107,7 @@ class Details extends PublicController
         $viewData["productoDescripcion"] = $tmpProducto["productoDescripcion"];
         $viewData["productoImagen"] = $tmpProducto["productoImagen"];
         $viewData["productoPrecio"] = $tmpProducto["productoPrecio"];
+        $_SESSION["productoPrecio"] = $tmpProducto["productoPrecio"];
         $viewData["inventarioExistencias"] = $tmpProducto["inventarioExistencias"];
         $viewData["presentacionId"] = $tmpProducto["presentacionId"];
         $viewData["presentacionNombre"] = $tmpProducto["presentacionNombre"];

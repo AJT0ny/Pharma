@@ -42,6 +42,13 @@ class Nav
             );
         }
 
+        if (\Utilities\Security::isAuthorized($userID, "WW_Shop")) {
+            $tmpNAVIGATION[] = array(
+                "nav_url" => "index.php?page=shop",
+                "nav_label" => "Tienda"
+            );
+        }
+
         \Utilities\Context::setContext("NAVIGATION", $tmpNAVIGATION);
     }
 

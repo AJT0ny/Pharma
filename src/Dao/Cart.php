@@ -15,6 +15,15 @@ class Cart extends Table
         return self::obtenerUnRegistro($sqlStr, $parametros);
     }
 
+    public static function countProductosEnCarrito($carritoId)
+    {
+        $sqlStr = "SELECT COUNT(carritoProductoId) AS numeroDeProductos FROM carritoproducto WHERE carritoId = :carritoId;";
+        $parametros = array(
+            "carritoId" => $carritoId
+        );
+        return self::obtenerUnRegistro($sqlStr, $parametros);
+    }
+
     public static function obtenerProductosEnCarrito($carritoId)
     {
         $sqlStr = "SELECT * from carritoproducto a 
@@ -25,6 +34,17 @@ class Cart extends Table
             "carritoId" => $carritoId
         );
         return self::obtenerRegistros($sqlStr, $parametros);
+    }
+
+    public static function sumProductos($carritoId)
+    {
+        $sqlStr = "SELECT ROUND(SUM(`carritoProductoTotal`), 2) AS sumaProductos
+        FROM carritoproducto
+        WHERE carritoId = :carritoId;";
+        $parametros = array(
+            "carritoId" => $carritoId
+        );
+        return self::obtenerUnRegistro($sqlStr, $parametros);
     }
 }
 

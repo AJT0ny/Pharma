@@ -19,7 +19,9 @@ class Cart extends PublicController
     {
         \Utilities\Site::addLink("public/css/Cart.css");
 
-        $viewData= array();
+        $viewData= array(
+            "noHayCarrito" => true
+        );
 
         if(isset($_SESSION["login"]["userId"])){
             $userId = $_SESSION["login"]["userId"];
@@ -28,8 +30,20 @@ class Cart extends PublicController
         }
 
         $carritoId = \Dao\Cart::getCarritoId($userId);
-        $viewData["carritoId"] = $carritoId["carritoId"];
-        $viewData["productoEnCarrito"] = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
+    
+        if($carritoId != false){
+            $viewData["carritoId"] = $carritoId["carritoId"];
+            $countProductos = \Dao\Cart::countProductosEnCarrito($viewData["carritoId"]);
+                if($countProductos["numeroDeProductos"] > 0){
+                $viewData["noHayCarrito"] = false;
+                $viewData["productoEnCarrito"] = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
+                $carritoSum = \Dao\Cart::sumProductos($viewData["carritoId"]);
+                $viewData["sumaProductos"] = $carritoSum["sumaProductos"];
+    
+                $totalProductos = intval($viewData["sumaProductos"]) + (intval($viewData["sumaProductos"]) * 0.15);
+                $viewData["totalCarrito"] = $totalProductos;
+            }
+        }
 
         \Views\Renderer::render("cart", $viewData);
     }

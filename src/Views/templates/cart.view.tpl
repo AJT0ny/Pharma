@@ -28,7 +28,11 @@
                                         <h5>{{productoNombre}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        ${{productoPrecio}}
+                                        <div class="price">
+                                            <div class="pro-price">
+                                                $<input type="text" readonly value="{{productoPrecio}}">
+                                            </div>
+                                        </div>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -38,24 +42,25 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        {{totalProducto}}
+                                        ${{carritoProductoTotal}}
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <i class="fas fa-times close-icon"></i>
+                                        <a href="index.php?page=action_delete&carritoProductoId={{carritoProductoId}}"><i class="fas fa-times close-icon"></i></a>
                                     </td>
                                 </tr>
                                 {{endfor productoEnCarrito}}
                             </tbody>
                         </table>
+                        {{if noHayCarrito}}
+                            <h3 class="noHayCarrito">No se han agregado productos al carrito.</h3>
+                        {{endif noHayCarrito}}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="#" class="primary-btn cart-btn">Continuar comprando...</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Actualizar carrito</a>
+                        <a href="index.php?page=shop" class="cart-btn continue-btn">Continuar comprando...</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -69,10 +74,13 @@
                     <div class="shoping__checkout">
                         <h5>Total del carrito</h5>
                         <ul>
-                            <li>Subtotal <span>{{subTotalCarrito}}</span></li>
-                            <li>Total <span>{{totalCarrito}}</span></li>
+                            <li>Subtotal <span>${{if noHayCarrito}}0{{endif noHayCarrito}}{{sumaProductos}}</span></li>
+                            <li>Total <span>${{if noHayCarrito}}0{{endif noHayCarrito}}{{totalCarrito}}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Realizar Compra</a>
+                        <form action="index.php" method="get">
+                            <input type="hidden" name="page" value="checkout_checkout"/>
+                            <button type="submit" {{if noHayCarrito}}disabled{{endif noHayCarrito}} class="primary-btn">Realizar Compra</button>
+                        </form>
                     </div>
                 </div>
             </div>

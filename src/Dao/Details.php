@@ -58,14 +58,15 @@ class Details extends Table
         return self::obtenerRegistros($sqlStr, $parametros);
     }
 
-    public static function agregarProductoACarrito($productoId, $carritoId, $carritoProductoCantidad, $carritoProductoActivo)
+    public static function agregarProductoACarrito($productoId, $carritoId, $carritoProductoCantidad, $carritoProductoTotal, $carritoProductoActivo)
     {
-        $sqlStr = "INSERT INTO `pharma`.`carritoproducto` (`productoId`, `carritoId`, `carritoProductoFechaAñadido`, `carritoProductoFechaActualizado`, `carritoProductoCantidad`, `carritoProductoActivo`) 
-        VALUES (:productoId, :carritoId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, :carritoProductoCantidad, :carritoProductoActivo);";
+        $sqlStr = "INSERT INTO carritoproducto (`productoId`, `carritoId`, `carritoProductoFechaAñadido`, `carritoProductoFechaActualizado`, `carritoProductoCantidad`, `carritoProductoTotal`, `carritoProductoActivo`) 
+        VALUES (:productoId, :carritoId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, :carritoProductoCantidad, :carritoProductoTotal, :carritoProductoActivo);";
         $parametros = array(
             "productoId" => intval($productoId),
             "carritoId" => intval($carritoId),
             "carritoProductoCantidad" => intval($carritoProductoCantidad),
+            "carritoProductoTotal" => $carritoProductoTotal,
             "carritoProductoActivo" => $carritoProductoActivo
         );
         return self::executeNonQuery($sqlStr, $parametros);

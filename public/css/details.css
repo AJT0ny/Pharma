@@ -705,6 +705,12 @@ ol {
 	margin-bottom: 15px;
 }
 
+.product__details__price input{
+	border: none;
+	background-color: #fff;
+	width: 130px;
+}
+
 .product__details__text p {
 	margin-bottom: 45px;
 }

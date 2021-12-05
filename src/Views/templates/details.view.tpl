@@ -7,13 +7,14 @@
 
     <!-- Product Details Section Begin -->
 <section class="product-details spad">
-    <form method="POST" >
+    <form action="index.php?page=details&productoId={{productoId}}" method="POST" >
         <input type="hidden" name="userId" value="{{userId}}">
         <input type="hidden" name="usuario_usercod" value="{{usuario_usercod}}">
         <input type="hidden" name="carritoEstado" value="{{carritoEstado}}">
         <input type="hidden" name="carritoId" value="{{carritoId}}">
         <input type="hidden" name="carritoProductoActivo" value="{{carritoProductoActivo}}">
         <input type="hidden" name="productoId" value="{{productoId}}">
+        <input type="hidden" name="carritoProductoTotal" value="{{carritoProductoTotal}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -27,12 +28,14 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>{{productoNombre}}</h3>
-                        <div class="product__details__price">${{productoPrecio}}</div>
+                        <div class="product__details__price">
+                            $<input class="product__details__price" type="text" readonly name="productoPrecio" value="{{productoPrecio}}">
+                        </div>
                         <p>{{productoDescripcion}}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" name="carritoProductoCantidad" maxlength="2" value="{{carritoProductoCantidad}}">
+                                    <input type="number" name="carritoProductoCantidad" min="1" max="99" onkeydown="return false //return value false" value="{{carritoProductoCantidad}}">
                                 </div>
                             </div>
                         </div>
@@ -101,5 +104,3 @@
         </div>
     </section>
     <!-- Related Product Section End -->
-
-  
