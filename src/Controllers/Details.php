@@ -17,7 +17,7 @@ class Details extends PublicController
 
     public function run() :void
     {
-        \Utilities\Site::addLink("public/css/details1.css");
+        \Utilities\Site::addLink("public/css/details.css");
 
         $viewData = array(
             "productoId" => 0,
@@ -62,9 +62,10 @@ class Details extends PublicController
                     $viewData["carritoEstado"],
                     $viewData["usuario_usercod"]
                 )){
+                    $carritoId = \Dao\Details::getCarritoId($viewData["usuario_usercod"]);
                     if(\Dao\Details::agregarProductoACarrito(
                         $viewData["productoId"],
-                        $viewData["carritoId"],
+                        $carritoId["carritoId"],
                         $viewData["carritoProductoCantidad"],
                         $viewData["carritoProductoTotal"],
                         $viewData["carritoProductoActivo"],

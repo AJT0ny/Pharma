@@ -12,7 +12,7 @@ class Cart extends PublicController
     }
     private function goodEnding()
     {
-        \Utilities\Site::redirectToWithMsg("index.php?page=cart", "xd.");
+        \Utilities\Site::redirectToWithMsg("index.php?page=checkout_checkout", "Orden Guardada Satisfactoriamente.");
     }
 
     public function run(): void
@@ -20,27 +20,92 @@ class Cart extends PublicController
         \Utilities\Site::addLink("public/css/Cart.css");
 
         $viewData= array(
+            "ordenEstado" => 1,
+            "descuento" => 0,
+            "usuarioId" => "",
+            "usuario_usercod" => 0,
             "noHayCarrito" => true
         );
 
-        if(isset($_SESSION["login"]["userId"])){
-            $userId = $_SESSION["login"]["userId"];
+        if($this->isPostBack()){
+            $viewData["usuario_usercod"] = $_POST["usuario_usercod"];
+            $viewData["sumaProductos"] = $_POST["sumaProductos"];
+            $viewData["impuesto"] = $_POST["impuesto"];
+            $viewData["totalCarrito"] = $_POST["totalCarrito"];
+            $viewData["carritoId"] = $_POST["carritoId"];
+
+            $ordenesUsuario = \Dao\Cart::getOrdenes($viewData["usuario_usercod"]);
+            $productoEnCarrito = array();
+
+            if($ordenesUsuario["ordenExiste"] == 0)
+            {
+                if(\Dao\Cart::agregarOrden(
+                    $viewData["usuarioId"],
+                    $viewData["ordenEstado"],
+                    $viewData["sumaProductos"],
+                    $viewData["descuento"],
+                    $viewData["impuesto"],
+                    $viewData["totalCarrito"],
+                    $viewData["usuario_usercod"]
+                ))
+                {
+                    $ordenId = \Dao\Cart::getOrdenId($viewData["usuario_usercod"]);
+                    $productoEnCarrito = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
+                    foreach ($productoEnCarrito as $producto) {
+                        if(\Dao\Cart::agregarProductoAOrden(
+                            $producto["productoId"],
+                            $ordenId["ordenId"],
+                            $producto["carritoProductoCantidad"],
+                            $producto["carritoProductoTotal"]
+                        )){
+                        }else{
+                            $this->badEnding();
+                        }
+                    }
+                    $this->goodEnding();
+                }else{
+                    $this->badEnding();
+                }
+            }else{
+                $ordenId = \Dao\Cart::getOrdenId($viewData["usuario_usercod"]);
+                $productoEnCarrito = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
+                foreach ($productoEnCarrito as $producto) {
+                    if(\Dao\Cart::agregarProductoAOrden(
+                        $producto["productoId"],
+                        $ordenId["ordenId"],
+                        $producto["carritoProductoCantidad"],
+                        $producto["carritoProductoTotal"]
+                    )){
+                    }else{
+                        $this->badEnding();
+                    }
+                }
+                $this->goodEnding();
+            }
+
         }else{
-            $this->badEnding();
+            if(isset($_SESSION["login"]["userId"])){
+                $userId = $_SESSION["login"]["userId"];
+            }else{
+                $this->badEnding();
+            }
         }
 
+        $viewData["usuario_usercod"] = $userId;
         $carritoId = \Dao\Cart::getCarritoId($userId);
     
         if($carritoId != false){
             $viewData["carritoId"] = $carritoId["carritoId"];
             $countProductos = \Dao\Cart::countProductosEnCarrito($viewData["carritoId"]);
-                if($countProductos["numeroDeProductos"] > 0){
+            if($countProductos["numeroDeProductos"] > 0){
                 $viewData["noHayCarrito"] = false;
                 $viewData["productoEnCarrito"] = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
                 $carritoSum = \Dao\Cart::sumProductos($viewData["carritoId"]);
                 $viewData["sumaProductos"] = $carritoSum["sumaProductos"];
-    
-                $totalProductos = intval($viewData["sumaProductos"]) + (intval($viewData["sumaProductos"]) * 0.15);
+
+                $impuesto = intval($viewData["sumaProductos"]) * 0.15;
+                $viewData["impuesto"] = $impuesto;
+                $totalProductos = intval($viewData["sumaProductos"]) + $impuesto;
                 $viewData["totalCarrito"] = $totalProductos;
             }
         }

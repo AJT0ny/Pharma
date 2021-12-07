@@ -46,6 +46,47 @@ class Cart extends Table
         );
         return self::obtenerUnRegistro($sqlStr, $parametros);
     }
+
+    public static function getOrdenes($usuario_usercod)
+    {
+        $sqlStr = "SELECT COUNT(ordenId) AS ordenExiste FROM orden WHERE usuario_usercod = :usuario_usercod;";
+        return self::obtenerUnRegistro($sqlStr, array("usuario_usercod" =>$usuario_usercod));
+    }
+
+    public static function getOrdenId($usuario_usercod)
+    {
+        $sqlStr = "SELECT ordenId FROM orden WHERE usuario_usercod=:usuario_usercod;";
+        return self::obtenerUnRegistro($sqlStr, array("usuario_usercod" => $usuario_usercod));
+    }
+
+    public static function agregarOrden($usuarioId, $ordenEstado, $ordenSubtotal, $ordenDescuento, $ordenImpuestos, $ordenTotal, $usuario_usercod)
+    {
+        $sqlStr = "INSERT INTO orden (`usuarioId`,`ordenEstado`,`ordenSubtotal`,`ordenDescuento`,`ordenImpuestos`,`ordenTotal`,`ordenCreadoEl`,`ordenActualizadoEl`,`usuario_usercod`)
+        VALUES (:usuarioId , :ordenEstado, :ordenSubtotal, :ordenDescuento, :ordenImpuestos, :ordenTotal, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, :usuario_usercod);";
+        $parametros = array(
+            "usuarioId" => $usuarioId,
+            "ordenEstado" => $ordenEstado,
+            "ordenSubtotal" => $ordenSubtotal,
+            "ordenDescuento" => $ordenDescuento,
+            "ordenImpuestos" => $ordenImpuestos,
+            "ordenTotal" => $ordenTotal,
+            "usuario_usercod" => intval($usuario_usercod),
+        );
+        return self::executeNonQuery($sqlStr, $parametros);
+    }
+
+    public static function agregarProductoAOrden($productoId, $ordenId, $ordenProductoCantidad, $ordenProductoTotal)
+    {
+        $sqlStr = "INSERT INTO ordenproducto (`productoId`, `ordenId`, `ordenProductoCantidad`, `ordenProductoTotal`)
+        VALUES (:productoId, :ordenId, :ordenProductoCantidad, :ordenProductoTotal);";
+        $parametros = array(
+            "productoId" => $productoId,
+            "ordenId" => $ordenId,
+            "ordenProductoCantidad" => $ordenProductoCantidad,
+            "ordenProductoTotal" => $ordenProductoTotal
+        );
+        return self::executeNonQuery($sqlStr, $parametros);
+    }
 }
 
 ?>

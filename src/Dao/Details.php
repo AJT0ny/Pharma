@@ -40,6 +40,12 @@ class Details extends Table
         return self::executeNonQuery($sqlStr, $parametros);
     }
 
+    public static function getCarritoId($usuario_usercod)
+    {
+        $sqlStr = "SELECT carritoId FROM carrito WHERE usuario_usercod=:usuario_usercod;";
+        return self::obtenerUnRegistro($sqlStr, array("usuario_usercod" => $usuario_usercod));
+    }
+
     public static function infoCarrito($usuario_usercod)
     {
         $sqlStr = "SELECT * FROM carrito WHERE usuario_usercod = :usuario_usercod;";

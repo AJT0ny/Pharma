@@ -6,6 +6,12 @@
 </div>
 
 <section class="shoping-cart spad">
+    <form method="POST">
+        <input type="hidden" name="usuario_usercod" value="{{usuario_usercod}}">
+        <input type="hidden" name="sumaProductos" value="{{sumaProductos}}">
+        <input type="hidden" name="impuesto" value="{{impuesto}}">
+        <input type="hidden" name="totalCarrito" value="{{totalCarrito}}">
+        <input type="hidden" name="carritoId" value="{{carritoId}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -77,12 +83,10 @@
                             <li>Subtotal <span>${{if noHayCarrito}}0{{endif noHayCarrito}}{{sumaProductos}}</span></li>
                             <li>Total <span>${{if noHayCarrito}}0{{endif noHayCarrito}}{{totalCarrito}}</span></li>
                         </ul>
-                        <form action="index.php" method="get">
-                            <input type="hidden" name="page" value="checkout_checkout"/>
-                            <button type="submit" {{if noHayCarrito}}disabled{{endif noHayCarrito}} class="primary-btn">Realizar Compra</button>
-                        </form>
+                        <button type="submit" {{if noHayCarrito}}disabled{{endif noHayCarrito}} class="primary-btn">Realizar Compra</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </form>
+</section>

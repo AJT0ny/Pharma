@@ -5,9 +5,13 @@ namespace Controllers\Checkout;
 use Controllers\PublicController;
 
 class Checkout extends PublicController{
+    public function badEnding()
+    {
+        \Utilities\Site::redirectToWithMsg("index.php?page=sec_register", "Necesitas una cuenta de usuario para realizar esta compra!");
+    }
     public function run():void
     {
-        \Utilities\Site::addLink("public/css/Checkout.css");
+        \Utilities\Site::addLink("public/css/Checkout1.css");
         $viewData = array();
         if ($this->isPostBack()) {
             $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
@@ -21,7 +25,21 @@ class Checkout extends PublicController{
             $_SESSION["orderid"] = $response[1]->result->id;
             \Utilities\Site::redirectTo($response[0]->href);
             die();
+        }else{
+            if(isset($_SESSION["login"]["userId"])){
+                $userId = $_SESSION["login"]["userId"];
+            }else{
+                $this->badEnding();
+            }
         }
+
+        $orden = \Dao\Checkout::getOrden($userId);
+        $viewData["ordenId"] = $orden["ordenId"];
+        $viewData["ordenSubtotal"] = $orden["ordenSubtotal"];
+        $viewData["ordenImpuestos"] = $orden["ordenImpuestos"];
+        $viewData["ordenTotal"] = $orden["ordenTotal"];
+
+        $viewData["ordenProducto"] = \Dao\Checkout::fillProductosOrden($viewData["ordenId"]);
 
         \Views\Renderer::render("paypal/checkout", $viewData);
     }
