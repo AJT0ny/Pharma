@@ -13,6 +13,14 @@ class Login extends \Controllers\PublicController
     {
         \Utilities\Site::addLink("public/css/login.css");
 
+        if(!isset($_SESSION["startTime"])){
+            $_SESSION["startTime"] = time();
+        }else{
+            if(isset($_SESSION["startTime"]) && ((time() - $_SESSION["startTime"]) > 86400)){
+                $_SESSION["startTime"] = time();
+            }
+        }
+
         if ($this->isPostBack()) {
             $this->txtEmail = $_POST["txtEmail"];
             $this->txtPswd = $_POST["txtPswd"];

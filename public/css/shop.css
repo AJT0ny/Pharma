@@ -316,3 +316,36 @@
 	color: #00ADB5;
 	font-weight: 700;
 }
+
+.product__pagination{
+	padding-top: 10px;
+}
+
+.product__pagination a{
+	display: inline-block;
+	width: fit-content;
+	height: 30px;
+	padding: 2px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	color: #b2b2b2;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.product__pagination a:hover{
+	background: #00ADB5;
+	border-color: #00ADB5;
+	color: #ffffff;
+}
+
+.product__pagination a:last-child{
+	margin-right: 0;
+}

@@ -1,0 +1,20 @@
+h1{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    font-size: 22px;
+}
+
+.continuar-div{
+    text-align: center;
+}
+
+.continuar{
+    padding: 10px;
+    background-color: rgb(202, 202, 202);
+    color: #333;
+}

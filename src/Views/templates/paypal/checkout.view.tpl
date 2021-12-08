@@ -2,7 +2,7 @@
         <div class="container">
             <div class="checkout__form">
                 <h4>Detalles de Compra</h4>
-                <form action="#">
+                <form action="index.php?page=checkout_checkout" method="POST">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                           <div class="shoping__cart__table">
@@ -48,10 +48,8 @@
                                 <div class="checkout__order__impuesto">Impuesto <span>${{ordenImpuestos}}</span></div>
                                 <div class="checkout__order__total">Total <span>${{ordenTotal}}</span></div>
                                 <p>Para realizar la orden necesita una cuenta de usuario.</p>
-                                <form action="index.php?page=checkout_checkout" method="post">
-                                  <a href="index.php?page=action_deleteorder&ordenId={{ordenId}}">Cancelar Orden</a>
-                                  <button type="submit">Pagar con PayPal</button>
-                                </form>
+                                <a href="index.php?page=action_deleteorder&ordenId={{ordenId}}">Cancelar Orden</a>
+                                <button type="submit">Pagar con PayPal</button>
                             </div>
                         </div>
                     </div>

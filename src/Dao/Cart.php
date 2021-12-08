@@ -75,17 +75,24 @@ class Cart extends Table
         return self::executeNonQuery($sqlStr, $parametros);
     }
 
-    public static function agregarProductoAOrden($productoId, $ordenId, $ordenProductoCantidad, $ordenProductoTotal)
+    public static function agregarProductoAOrden($productoId, $ordenId, $ordenProductoCantidad, $ordenProductoImpuesto, $ordenProductoTotal)
     {
-        $sqlStr = "INSERT INTO ordenproducto (`productoId`, `ordenId`, `ordenProductoCantidad`, `ordenProductoTotal`)
-        VALUES (:productoId, :ordenId, :ordenProductoCantidad, :ordenProductoTotal);";
+        $sqlStr = "INSERT INTO ordenproducto (`productoId`, `ordenId`, `ordenProductoCantidad`, `ordenProductoImpuesto`, `ordenProductoTotal`)
+        VALUES (:productoId, :ordenId, :ordenProductoCantidad, :ordenProductoImpuesto, :ordenProductoTotal);";
         $parametros = array(
             "productoId" => $productoId,
             "ordenId" => $ordenId,
             "ordenProductoCantidad" => $ordenProductoCantidad,
+            "ordenProductoImpuesto" => $ordenProductoImpuesto,
             "ordenProductoTotal" => $ordenProductoTotal
         );
         return self::executeNonQuery($sqlStr, $parametros);
+    }
+
+    public static function deleteProductosCarrito($carritoId)
+    {
+        $sqlStr = "DELETE FROM carritoproducto WHERE carritoId = :carritoId;";
+        return self::executeNonQuery($sqlStr, array("carritoId" => $carritoId));
     }
 }
 

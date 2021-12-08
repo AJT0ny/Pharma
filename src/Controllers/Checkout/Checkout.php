@@ -23,8 +23,13 @@ class Checkout extends PublicController{
                 "http://localhost/Pharma/Pharma/index.php?page=checkout_error",
                 "http://localhost/Pharma/Pharma/index.php?page=checkout_accept"
             );
-            $PayPalOrder->addItem("Test", "TestItem1", "PRD1", 100, 15, 1, "DIGITAL_GOODS");
-            $PayPalOrder->addItem("Test 2", "TestItem2", "PRD2", 50, 7.5, 2, "DIGITAL_GOODS");
+            $orden = \Dao\Checkout::getOrden($_SESSION["login"]["userId"]);
+            $productos = \Dao\Checkout::fillProductosOrden($orden["ordenId"]);
+            $i = 0;
+            $i = $i+1;
+            foreach ($productos as $item) {
+                $PayPalOrder->addItem($item["productoNombre"], $item["productoDescripcion"], "PRD-" . $i, floatval($item["productoPrecio"]), floatval($item["ordenProductoImpuesto"]), intval($item["ordenProductoCantidad"]), "DIGITAL_GOODS");
+            }
             $response = $PayPalOrder->createOrder();
             $_SESSION["orderid"] = $response[1]->result->id;
             \Utilities\Site::redirectTo($response[0]->href);

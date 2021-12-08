@@ -12,30 +12,12 @@
                         <div class="sidebar__item">
                             <h4>Department</h4>
                             <ul>
+                                <li><a href="index.php?page=shop">Todos</a></li>
                                 {{foreach presentacion}}
                                     <input type="hidden" name="presentacionId" value="{{presentacionId}}"/>
-                                    <li><a href="#">{{presentacionNombre}}</a></li>
+                                    <li><a href="index.php?page=shop&presentacion={{presentacionId}}">{{presentacionNombre}}</a></li>
                                 {{endfor presentacion}}
                             </ul>
-                        </div>
-                        <div class="sidebar__item">
-                            <h4>Price</h4>
-                            <div class="price-range-wrap">
-                                <div class="range-slider">
-                                    <div class="price-input">
-                                        <div class="price-input">
-                                        <p>
-                                            De:
-                                        </p>
-                                        $ <input type="text" id="minamount">
-                                        <p>
-                                            Hasta:
-                                        </p>
-                                        $ <input type="text" id="maxamount">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
@@ -67,13 +49,7 @@
                     </div>
                     <div class="filter__item">
                         <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>Buscar por nombre:</span>
-                                    <input type="text" name="productoNombre" value="{{productoNombre}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
+                            <div class="col-lg-14 col-md-14 text-center">
                                 <div class="filter__found">
                                     <h6><span>{{totalProductos}}</span> Products found</h6>
                                 </div>
@@ -98,6 +74,17 @@
                             </div>
                         </div>
                         {{endfor producto}}
+                    </div>
+                    <div class="product__pagination">
+                        {{if previous}}
+                            <a class="page" href="index.php?page=shop&list={{prevBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Anterior</a>
+                        {{endif previous}}
+                        {{foreach nPages}}
+                            <a class="page" href="index.php?page=shop&list={{number}}">{{number}}</a>
+                        {{endfor nPages}}
+                        {{if next}}
+                            <a class="page" href="index.php?page=shop&list={{nextBtn}}{{if search}}&search={{searchValue}}{{endif search}}">Siguiente</a>
+                        {{endif next}}
                     </div>
                 </div>
             </div>

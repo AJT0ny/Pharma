@@ -22,6 +22,7 @@ class Cart extends PublicController
     public function run(): void
     {
         \Utilities\Site::addLink("public/css/Cart.css");
+        
 
         $viewData= array(
             "ordenEstado" => 1,
@@ -56,15 +57,22 @@ class Cart extends PublicController
                     $ordenId = \Dao\Cart::getOrdenId($viewData["usuario_usercod"]);
                     $productoEnCarrito = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
                     foreach ($productoEnCarrito as $producto) {
+                        $impuestoProducto = $producto["productoPrecio"] * 0.15;
                         if(\Dao\Cart::agregarProductoAOrden(
                             $producto["productoId"],
                             $ordenId["ordenId"],
                             $producto["carritoProductoCantidad"],
+                            round($impuestoProducto, 2),
                             $producto["carritoProductoTotal"]
                         )){
                         }else{
                             $this->badEnding();
                         }
+                    }
+                    if(\Dao\Cart::deleteProductosCarrito($viewData["carritoId"]))
+                    {           
+                    }else{
+                        $this->badEnding();
                     }
                     $this->goodEnding();
                 }else{
@@ -74,10 +82,12 @@ class Cart extends PublicController
                 $ordenId = \Dao\Cart::getOrdenId($viewData["usuario_usercod"]);
                 $productoEnCarrito = \Dao\Cart::obtenerProductosEnCarrito($viewData["carritoId"]);
                 foreach ($productoEnCarrito as $producto) {
+                    $impuestoProducto = $producto["productoPrecio"] * 0.15;
                     if(\Dao\Cart::agregarProductoAOrden(
                         $producto["productoId"],
                         $ordenId["ordenId"],
                         $producto["carritoProductoCantidad"],
+                        round($impuestoProducto, 2),
                         $producto["carritoProductoTotal"]
                     )){
                     }else{
@@ -90,11 +100,22 @@ class Cart extends PublicController
         }else{
             if(isset($_SESSION["login"]["userId"])){
                 $userId = $_SESSION["login"]["userId"];
+                if(isset($_SESSION["startTime"]) && ((time() - $_SESSION["startTime"]) > 86400)){
+                    $carritoId = \Dao\Cart::getCarritoId($userId);
+                    if(\Dao\Cart::deleteProductosCarrito($carritoId["carritoId"]))
+                    {           
+                    }else{
+                        $this->badEnding();
+                    }
+                    $_SESSION["startTime"] = time();
+                }
             }else{
                 $this->crearUsuario();
             }
         }
 
+        $viewData["startTime"] = $_SESSION["startTime"];
+        $viewData["time"] = time();
         $viewData["usuario_usercod"] = $userId;
         $carritoId = \Dao\Cart::getCarritoId($userId);
     
