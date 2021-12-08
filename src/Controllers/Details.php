@@ -14,6 +14,10 @@ class Details extends PublicController
     {
         \Utilities\Site::redirectToWithMsg("index.php?page=cart", "El producto se ha añadido al carrito.");
     }
+    private function crearUsuario()
+    {
+        \Utilities\Site::redirectToWithMsg("index.php?page=sec_register", "Necesitas una cuenta para agregar productos al carrito.");
+    }
 
     public function run() :void
     {
@@ -33,7 +37,8 @@ class Details extends PublicController
             "carritoId" => 0,
             "carritoProductoCantidad" => 1,
             "carritoProductoTotal" => 0,
-            "carritoProductoActivo" => 1
+            "carritoProductoActivo" => 1,
+            "noHayUsuario" => true
         );
 
         if($this->isPostBack()){
@@ -46,6 +51,10 @@ class Details extends PublicController
 
             $totalProducto = $_SESSION["productoPrecio"] * $viewData["carritoProductoCantidad"];
             $viewData["carritoProductoTotal"] = $totalProducto;
+
+            if($viewData["usuario_usercod"] == 0){
+                $this->crearUsuario();
+            }
 
             $existeCarrito = \Dao\Details::existeCarrito($viewData["usuario_usercod"]);
             $carritoExiste = 0;
@@ -97,7 +106,8 @@ class Details extends PublicController
                 $productoId = $_GET["productoId"];
                 $userId = $_SESSION["login"]["userId"];
             }else{
-                $this->badEnding();
+                $productoId = $_GET["productoId"];
+                $userId=0;
             }
         }
 

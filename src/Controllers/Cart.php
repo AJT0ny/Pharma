@@ -14,6 +14,10 @@ class Cart extends PublicController
     {
         \Utilities\Site::redirectToWithMsg("index.php?page=checkout_checkout", "Orden Guardada Satisfactoriamente.");
     }
+    private function crearUsuario()
+    {
+        \Utilities\Site::redirectToWithMsg("index.php?page=sec_register", "Necesitas una cuenta de usuario para realizar compras.");
+    }
 
     public function run(): void
     {
@@ -87,7 +91,7 @@ class Cart extends PublicController
             if(isset($_SESSION["login"]["userId"])){
                 $userId = $_SESSION["login"]["userId"];
             }else{
-                $this->badEnding();
+                $this->crearUsuario();
             }
         }
 

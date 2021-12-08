@@ -30,6 +30,7 @@
     <nav id="menu">
       <ul>
         <li><a href="index.php?page=index"><i class="fas fa-home"></i>&nbsp;Inicio</a></li>
+        <li><a href="index.php?page=shop"><i class="fas fa-shopping-basket"></i>&nbsp;Tienda</a></li>
         {{foreach NAVIGATION}}
             <li><a href="{{nav_url}}">{{nav_label}}</a></li>
         {{endfor NAVIGATION}}
@@ -39,7 +40,7 @@
     {{with login}}
     <span class="username">{{userName}} <a href="index.php?page=sec_logout"><i class="fas fa-sign-out-alt"></i></a></span>
     {{endwith login}}
-    <a href="index.php?page=cart" style="margin: 0 30px 0 5px;"><i class="fas fa-shopping-cart"></i></a>
+    <a href="index.php?page=cart" class="cart-private"><i class="fas fa-shopping-cart"></i></a>
   </header>
   <main>
     {{{page_content}}}

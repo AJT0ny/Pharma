@@ -49,6 +49,7 @@
                                 <div class="checkout__order__total">Total <span>${{ordenTotal}}</span></div>
                                 <p>Para realizar la orden necesita una cuenta de usuario.</p>
                                 <form action="index.php?page=checkout_checkout" method="post">
+                                  <a href="index.php?page=action_deleteorder&ordenId={{ordenId}}">Cancelar Orden</a>
                                   <button type="submit">Pagar con PayPal</button>
                                 </form>
                             </div>
