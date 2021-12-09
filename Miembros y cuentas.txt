@@ -1,0 +1,14 @@
+Miembros del proyecto: 
+
+-> Anthony Jafeth Portillo - 0801-2000-14783
+-> José Alejandro Ajuria - 0801200204150
+-> Mario Jose Herrera - 1007200000846
+-> Isaak Benjamín Antúnez - 1503200001376
+-> Diego Andres Mendoza - 0801200010492
+-> Nicolle Alejandra Salazar Rodríguez - 0801200103080
+
+
+Cuentas que se pueden utilizar y su contraseña:
+
+admin@admin.com - Admintest1$
+usuario@usuario.com - Usuario1$
