@@ -31,6 +31,7 @@
       <ul>
         <li><a href="index.php?page=index"><i class="fas fa-home"></i>&nbsp;Inicio</a></li>
         <li><a href="index.php?page=shop"><i class="fas fa-shopping-basket"></i>&nbsp;Tienda</a></li>
+        <li><a href="index.php?page=bitclient"><i class="fas fa-clipboard"></i>&nbsp;Historial de Compras</a></li>
         {{foreach NAVIGATION}}
             <li><a href="{{nav_url}}">{{nav_label}}</a></li>
         {{endfor NAVIGATION}}

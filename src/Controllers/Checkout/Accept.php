@@ -22,6 +22,18 @@ class Accept extends PublicController{
             $dataview["orderjson"] = json_encode($result, JSON_PRETTY_PRINT);
 
             $orden = \Dao\Checkout::getOrden($_SESSION["login"]["userId"]);
+            if(\Dao\Checkout::guardarCompra(
+                "Programa",
+                "Orden Aceptada",
+                $orden["ordenTotal"],
+                $orden["ordenSubtotal"],
+                $_SESSION["login"]["userId"],
+                "ACP",
+                $orden["ordenImpuestos"]
+            )){
+
+            }
+
             if(\Dao\Checkout::deleteProductosOrden($orden["ordenId"]))
             {
                 if(\Dao\Checkout::deleteOrden($_SESSION["login"]["userId"]))

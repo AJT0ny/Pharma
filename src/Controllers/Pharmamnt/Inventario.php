@@ -2,9 +2,9 @@
 
 namespace Controllers\Pharmamnt;
 
-use Controllers\PublicController;
+use Controllers\PrivateController;
 
-class Inventario extends PublicController
+class Inventario extends PrivateController
 {
     private function noFunc()
     {

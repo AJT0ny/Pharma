@@ -2,10 +2,10 @@
 
 namespace Controllers\Pharmamnt;
 
-use Controllers\PublicController;
+use Controllers\PrivateController;
 use Views\Renderer;
 
-class Inventarios extends PublicController
+class Inventarios extends PrivateController
 {
     public function run(): void
     {

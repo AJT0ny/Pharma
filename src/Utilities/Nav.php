@@ -29,6 +29,20 @@ class Nav
             );
         }
 
+        if (\Utilities\Security::isAuthorized($userID, "WW_Inventario")) {
+            $tmpNAVIGATION[] = array(
+                "nav_url" => "index.php?page=pharmamnt_inventarios",
+                "nav_label" => "Inventario"
+            );
+        }
+
+        if (\Utilities\Security::isAuthorized($userID, "WW_Productos")) {
+            $tmpNAVIGATION[] = array(
+                "nav_url" => "index.php?page=pharmamnt_productos",
+                "nav_label" => "Productos"
+            );
+        }
+
         if (\Utilities\Security::isAuthorized($userID, "WW_Laboratorios")) {
             $tmpNAVIGATION[] = array(
                 "nav_url" => "index.php?page=mnt_laboratorios",
@@ -41,11 +55,10 @@ class Nav
                 "nav_label" => "Presentaciones"
             );
         }
-
-        if (\Utilities\Security::isAuthorized($userID, "WW_Shop")) {
+        if (\Utilities\Security::isAuthorized($userID, "WW_Bitacora")) {
             $tmpNAVIGATION[] = array(
-                "nav_url" => "index.php?page=shop",
-                "nav_label" => "Tienda"
+                "nav_url" => "index.php?page=pharmamnt_bitacoras",
+                "nav_label" => "Gestion de Compras"
             );
         }
 

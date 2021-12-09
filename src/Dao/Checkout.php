@@ -29,6 +29,21 @@ class Checkout extends Table
         $sqlStr = "DELETE FROM `orden` WHERE `usuario_usercod` = :usuario_usercod;";
         return self::executeNonQuery($sqlStr, array("usuario_usercod" => $usuario_usercod));
     }
+
+    public static function guardarCompra($bitprograma, $bitdescripcion, $bitTotal, $bitSubTotal, $bitusuario, $bitTipo, $bitImpuesto)
+    {
+        $sqlstr = "INSERT INTO bitacora (bitacorafch, bitprograma, bitdescripcion, bitTotal, bitSubTotal, bitusuario, bitImpuesto, bitTipo) values (now(), :bitprograma, :bitdescripcion, :bitTotal, :bitSubTotal, :bitusuario, :bitImpuesto, :bitTipo);";
+        $parametros = array(
+            "bitprograma" => $bitprograma,
+            "bitdescripcion" => $bitdescripcion,
+            "bitTotal" => $bitTotal,
+            "bitSubTotal" => $bitSubTotal,
+            "bitusuario" => $bitusuario,
+            "bitImpuesto" => $bitImpuesto,
+            "bitTipo" => $bitTipo
+        );
+        return self::executeNonQuery($sqlstr, $parametros);
+    }
 }
 
 ?>
