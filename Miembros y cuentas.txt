@@ -12,3 +12,5 @@ Cuentas que se pueden utilizar y su contraseña:
 
 admin@admin.com - Admintest1$
 usuario@usuario.com - Usuario1$
+
+Video -> https://www.youtube.com/watch?v=_Zho46tLL1E&t=3s&ab_channel=TonyPortillo
